@@ -25,12 +25,12 @@ namespace AssignmentAnimals
 
         public virtual void CelebrateBirthday()
         {
-            if(this.age < 100)
+            if (this.age < 100)
             {
                 age++;
                 return;
             }
-            age = 100;
+            age = 101;
         }
 
         public override string ToString()
