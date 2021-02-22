@@ -21,5 +21,10 @@ namespace Week1InheritanceTransportation
         {
             return $"Car: lp: {licencePlate}, color: {color}, speed: {base.ToString()}";
         }
+
+        public override string MakeSound()
+        {
+            return "Honk!";
+        }
     }
 }

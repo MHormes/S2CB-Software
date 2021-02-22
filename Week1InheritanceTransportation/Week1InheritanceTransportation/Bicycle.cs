@@ -14,5 +14,15 @@ namespace Week1InheritanceTransportation
         {
             hasLuggageCarrier = hasCarrie;
         }
+
+        public override string MakeSound()
+        {
+            return "Ring!";
+        }
+
+        public override string ToString()
+        {
+            return base.ToString();
+        }
     }
 }

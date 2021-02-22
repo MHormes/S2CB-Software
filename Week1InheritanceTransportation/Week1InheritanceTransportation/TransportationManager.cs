@@ -8,42 +8,22 @@ namespace Week1InheritanceTransportation
 {
     public class TransportationManager
     {
-        List<Bicycle> bicycles;
-        List<Boat> boats;
-        List<Car> cars;
+        List<Transportation> transportations;
 
         public TransportationManager()
         {
-            bicycles = new List<Bicycle>();
-            boats = new List<Boat>();
-            cars = new List<Car>();
+            transportations = new List<Transportation>();
         }
 
-        public void AddCar(Car car)
+        public void AddTransportation(Transportation t)
         {
-            cars.Add(car);
-        }
-        public void AddBoat(Boat boat)
-        {
-            boats.Add(boat);
-        }
-        public void Bicycle(Bicycle bicycle)
-        {
-            bicycles.Add(bicycle);
+            transportations.Add(t);
         }
 
-        public List<Car> GetCars()
-        {
-            return this.cars;
-        }
-        public List<Boat> GetBoats()
-        {
-            return this.boats;
-        }
-        public List<Bicycle> GetBicycles()
-        {
-            return this.bicycles;
-        }
 
+        public List<Transportation> GetTransportations()
+        {
+            return transportations;
+        }
     }
 }

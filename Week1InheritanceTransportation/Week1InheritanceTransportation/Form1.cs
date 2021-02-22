@@ -19,24 +19,35 @@ namespace Week1InheritanceTransportation
         {
             InitializeComponent();
 
-            tm.AddCar(new Car("123", "red", 220));
-            tm.AddCar(new Car("234", "red", 225));
-            tm.AddCar(new Car("987", "blue", 350));
-            tm.AddCar(new Car("357", "black", 120));
-            tm.AddCar(new Car("101", "gray", 300));
+            tm.AddTransportation(new Car("123", "red", 220));
+            tm.AddTransportation(new Car("234", "red", 225));
+            tm.AddTransportation(new Car("987", "blue", 350));
+            tm.AddTransportation(new Car("357", "black", 120));
+            tm.AddTransportation(new Car("101", "gray", 300));
 
-            tm.AddBoat(new Boat("Navy", 3, 8));
-            tm.AddBoat(new Boat("Columb", 5, 6));
-            tm.AddBoat(new Boat("Sea", 4, 7));
+            tm.AddTransportation(new Boat("Navy", 3, 8));
+            tm.AddTransportation(new Boat("Columb", 5, 6));
+            tm.AddTransportation(new Boat("Sea", 4, 7));
 
-            foreach(Car c in tm.GetCars())
+            foreach(Transportation t in tm.GetTransportations())
             {
-                listBox1.Items.Add(c);
+                listBox1.Items.Add(t);
             }
 
-            foreach(Boat b in tm.GetBoats())
+        }
+
+        private void listBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Transportation t = (Transportation)listBox1.SelectedItem;
+
+            if(t is Car)
             {
-                listBox1.Items.Add(b);
+                label1.Text = ((Car)t).ToString();
+            }
+
+            if(t is Boat)
+            {
+                label1.Text = ((Boat)t).ToString();
             }
         }
     }

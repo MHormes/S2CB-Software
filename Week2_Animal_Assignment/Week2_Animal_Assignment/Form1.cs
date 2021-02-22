@@ -5,18 +5,16 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MissionControl
+namespace Week2_Animal_Assignment
 {
-    public partial class MissionControlForm : Form
+    public partial class Form1 : Form
     {
-
-        public MissionControlForm()
+        public Form1()
         {
-            InitializeComponent();    
+            InitializeComponent();
         }
-
-      
     }
 }

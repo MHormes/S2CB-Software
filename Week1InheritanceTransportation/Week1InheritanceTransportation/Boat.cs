@@ -21,5 +21,10 @@ namespace Week1InheritanceTransportation
         {
             return $"Boat: Company: {company}, Weight: {weight} tons, Speed: {base.ToString()}";
         }
+
+        public override string MakeSound()
+        {
+            return "Vroom!";
+        }
     }
 }

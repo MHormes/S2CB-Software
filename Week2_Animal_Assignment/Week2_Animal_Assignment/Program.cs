@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MissionControl
+namespace Week2_Animal_Assignment
 {
     static class Program
     {
@@ -15,7 +16,7 @@ namespace MissionControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MissionControlForm());
+            Application.Run(new Form1());
         }
     }
 }
