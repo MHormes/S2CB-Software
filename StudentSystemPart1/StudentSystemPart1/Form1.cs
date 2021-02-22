@@ -19,142 +19,138 @@ namespace StudentSystemPart1
             admin = new Administration();
         }
 
-        private void btnNewPerson_Click(object sender, EventArgs e)
+        private void btnAddToAdministration_Click(object sender, EventArgs e)
         {
             if (admin.AlreadyExcists(Convert.ToInt32(tbxPCN.Text)))
             {
                 MessageBox.Show("Someone already has this pcn");
                 return;
             }
-            Person nP = new Person(Convert.ToInt32(tbxAge.Text), tbxName.Text, Convert.ToInt32(tbxPCN.Text), Convert.ToInt32(tbxYearsAtSchool.Text));
-            admin.AddPerson(nP);
-        }
 
-        private void btnNewStudent_Click(object sender, EventArgs e)
-        {
-            if (admin.AlreadyExcists(Convert.ToInt32(tbxPCN.Text)))
+            if (rdbTeacher.Checked)
             {
-                MessageBox.Show("Someone already has this pcn");
-                return;
+                Teacher nT = new Teacher(Convert.ToInt32(tbxAge.Text), tbxName.Text, Convert.ToInt32(tbxPCN.Text), Convert.ToInt32(tbxYearsAtSchool.Text));
+                admin.AddPerson(nT);
             }
-            Student nS = new Student(Convert.ToInt32(tbxAge.Text), tbxName.Text, Convert.ToInt32(tbxPCN.Text), Convert.ToInt32(tbxYearsAtSchool.Text));
-            admin.AddStudent(nS);
-        }
-
-        private void btnNewTeacher_Click(object sender, EventArgs e)
-        {
-            if (admin.AlreadyExcists(Convert.ToInt32(tbxPCN.Text)))
+            else
             {
-                MessageBox.Show("Someone already has this pcn");
-                return;
+                Student nS = new Student(Convert.ToInt32(tbxAge.Text), tbxName.Text, Convert.ToInt32(tbxPCN.Text), Convert.ToInt32(tbxYearsAtSchool.Text));
+                admin.AddPerson(nS);
             }
-            Teacher nT = new Teacher(Convert.ToInt32(tbxAge.Text), tbxName.Text, Convert.ToInt32(tbxPCN.Text), Convert.ToInt32(tbxYearsAtSchool.Text));
-            admin.AddTeacher(nT);
         }
 
-        private void btnShowAllPerson_Click(object sender, EventArgs e)
+        private void btnShowPersons_Click(object sender, EventArgs e)
         {
             lbxShowInfo.Items.Clear();
-            foreach(Person p in admin.GetPerson())
+
+            if(cbShowPerson.SelectedIndex == 0)
             {
-                lbxShowInfo.Items.Add(p); ;
+                foreach(Person p in admin.GetPerson())
+                {
+                    lbxShowInfo.Items.Add(p);
+                }
+            }
+            else if(cbShowPerson.SelectedIndex == 1)
+            {
+                foreach(Person p in admin.GetPerson())
+                {
+                    if(p is Teacher)
+                    {
+                        lbxShowInfo.Items.Add(p);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Person p in admin.GetPerson())
+                {
+                    if (p is Student)
+                    {
+                        lbxShowInfo.Items.Add(p);
+                    }
+                }
             }
         }
 
-        private void btnShowInfoPerson_Click(object sender, EventArgs e)
+        private void btnShowInfo_Click(object sender, EventArgs e)
         {
-            if(admin.GetPerson(Convert.ToInt32(tbxShowPerson.Text)) != null)
+            if (admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text)) != null)
             {
                 lbxShowInfo.Items.Clear();
-                lbxShowInfo.Items.Add(admin.GetPerson(Convert.ToInt32(tbxShowPerson.Text)));
-                return;
-            }
-            MessageBox.Show("No person found with supplied PCN");
-        }
-
-        private void btnShowAllStudent_Click(object sender, EventArgs e)
-        {
-            lbxShowInfo.Items.Clear();
-            foreach(Student s in admin.GetStudents())
-            {
-                lbxShowInfo.Items.Add(s);
-            }
-        }
-
-        private void btnShowInfoStudent_Click(object sender, EventArgs e)
-        {
-            if (admin.GetStudent(Convert.ToInt32(tbxShowStudent.Text)) != null)
-            {
-                lbxShowInfo.Items.Clear();
-                lbxShowInfo.Items.Add(admin.GetStudent(Convert.ToInt32(tbxShowStudent.Text)));
+                lbxShowInfo.Items.Add(admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text)));
                 return;
             }
             MessageBox.Show("No student found with supplied PCN");
-        }
-
-        private void btnStartNewYear_Click(object sender, EventArgs e)
-        {
-            Student s = admin.GetStudent(Convert.ToInt32(tbxShowStudent.Text));
-            if (s != null)
-            {
-                s.StartAnotherSchoolyear();
-                return;
-            }
-            MessageBox.Show("No student found with supplied PCN");
-        }
-
-        private void btnAddECs_Click(object sender, EventArgs e)
-        {
-            Student s = admin.GetStudent(Convert.ToInt32(tbxShowStudent.Text));
-            if (s != null)
-            {
-                s.AddECs(Convert.ToInt32(tbxAddECs.Text));
-                return;
-            }
-            MessageBox.Show("No student found with supplied PCN");
-        }
-
-        private void btnShowAllTeacher_Click(object sender, EventArgs e)
-        {
-            lbxShowInfo.Items.Clear();
-            foreach (Teacher t in admin.GetTeachers())
-            {
-                lbxShowInfo.Items.Add(t);
-            }
-        }
-
-        private void btnShowInfoTeacher_Click(object sender, EventArgs e)
-        {
-            Teacher t = admin.GetTeacher(Convert.ToInt32(tbxShowTeacher.Text));
-            if (t != null)
-            {
-                lbxShowInfo.Items.Clear();
-                lbxShowInfo.Items.Add(t);
-                return;
-            }
-            MessageBox.Show("No teacher found with supplied PCN");
         }
 
         private void btnStartNewSchoolYearTeach_Click(object sender, EventArgs e)
         {
-            Teacher t = admin.GetTeacher(Convert.ToInt32(tbxShowTeacher.Text));
-            if (t != null)
+            Person p = admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text));
+            if (p != null)
             {
-                t.StartAnotherSchoolyear();
+                p.StartAnotherSchoolyear();
                 return;
+            }
+            MessageBox.Show("No one found with supplied PCN");
+        }
+
+        private void btnCelebrateBirthday_Click(object sender, EventArgs e)
+        {
+            Person p = admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text));
+            if(p != null)
+            {
+                p.CelebrateBirthday();
+                return;
+            }
+            MessageBox.Show("No one found with supplied PCN");
+        }
+
+
+        private void btnAddECs_Click(object sender, EventArgs e)
+        {
+            Person p = admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text));
+            if (p != null)
+            {
+                if(p is Student)
+                {
+                    ((Student)p).AddECs(Convert.ToInt32(tbxAddECs.Text));
+                    return;
+                }
+                MessageBox.Show("Only students can have EC's");
+                return;
+            }
+            MessageBox.Show("No student found with supplied PCN");
+        }
+
+
+
+
+        private void btnPromote_Click(object sender, EventArgs e)
+        {
+            Person p = admin.GetPerson(Convert.ToInt32(tbxSearchPCN.Text));
+            if (p != null)
+            {
+                if(p is Teacher)
+                {
+                    ((Teacher)p).MakePromotion();
+                    return;
+                }
+                MessageBox.Show("Only teachers can be promoted");
+                
             }
             MessageBox.Show("No teacher found with supplied PCN");
         }
 
-        private void btnPromote_Click(object sender, EventArgs e)
+        private void btnPartialName_Click(object sender, EventArgs e)
         {
-            Teacher t = admin.GetTeacher(Convert.ToInt32(tbxShowTeacher.Text));
-            if (t != null)
+            lbxShowInfo.Items.Clear();
+            foreach(Person p in admin.GetPerson())
             {
-                t.MakePromotion();
-                return;
+                if(p.GetName().Contains(txbPartialName.Text))
+                {
+                    lbxShowInfo.Items.Add(p);
+                }
             }
-            MessageBox.Show("No teacher found with supplied PCN");
         }
     }
 }

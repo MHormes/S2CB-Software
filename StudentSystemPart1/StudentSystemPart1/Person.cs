@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentSystemPart1
 {
-    public class Person
+    abstract public class Person
     {
         protected int age;
         protected string name;
@@ -25,6 +25,12 @@ namespace StudentSystemPart1
         {
             return pcn;
         }
+
+        public string GetName()
+        {
+            return this.name;
+        }
+
         public override string ToString()
         {
             return $"{name} : {age} year, pcn: {pcn}, at school for {yearsAtSchool} year";

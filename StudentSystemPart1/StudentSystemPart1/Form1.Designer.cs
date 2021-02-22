@@ -30,53 +30,44 @@ namespace StudentSystemPart1
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbxPCN = new System.Windows.Forms.TextBox();
-            this.tbxName = new System.Windows.Forms.TextBox();
-            this.tbxAge = new System.Windows.Forms.TextBox();
-            this.tbxYearsAtSchool = new System.Windows.Forms.TextBox();
-            this.tbxECs = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.rdbTeacher = new System.Windows.Forms.RadioButton();
+            this.rdbStudent = new System.Windows.Forms.RadioButton();
+            this.btnAddToAdministration = new System.Windows.Forms.Button();
             this.tbxSalary = new System.Windows.Forms.TextBox();
-            this.btnNewPerson = new System.Windows.Forms.Button();
-            this.btnNewTeacher = new System.Windows.Forms.Button();
-            this.btnNewStudent = new System.Windows.Forms.Button();
-            this.btnShowAllStudent = new System.Windows.Forms.Button();
-            this.btnShowAllTeacher = new System.Windows.Forms.Button();
-            this.btnShowAllPerson = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.tbxECs = new System.Windows.Forms.TextBox();
+            this.tbxYearsAtSchool = new System.Windows.Forms.TextBox();
+            this.tbxAge = new System.Windows.Forms.TextBox();
+            this.tbxName = new System.Windows.Forms.TextBox();
+            this.tbxPCN = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbxShowInfo = new System.Windows.Forms.ListBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnShowInfoPerson = new System.Windows.Forms.Button();
-            this.tbxShowPerson = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnShowInfoStudent = new System.Windows.Forms.Button();
-            this.tbxShowStudent = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.btnStartNewYear = new System.Windows.Forms.Button();
-            this.tbxAddECs = new System.Windows.Forms.TextBox();
             this.btnAddECs = new System.Windows.Forms.Button();
+            this.tbxAddECs = new System.Windows.Forms.TextBox();
+            this.btnCelebrateBirthday = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.btnStartNewSchoolYearTeach = new System.Windows.Forms.Button();
-            this.btnShowInfoTeacher = new System.Windows.Forms.Button();
-            this.tbxShowTeacher = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnPromote = new System.Windows.Forms.Button();
+            this.btnStartNewSchoolYear = new System.Windows.Forms.Button();
+            this.btnShowInfo = new System.Windows.Forms.Button();
+            this.tbxSearchPCN = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cbShowPerson = new System.Windows.Forms.ComboBox();
+            this.btnShowPersons = new System.Windows.Forms.Button();
+            this.btnPartialName = new System.Windows.Forms.Button();
+            this.txbPartialName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnNewStudent);
-            this.groupBox1.Controls.Add(this.btnNewTeacher);
-            this.groupBox1.Controls.Add(this.btnNewPerson);
+            this.groupBox1.Controls.Add(this.rdbTeacher);
+            this.groupBox1.Controls.Add(this.rdbStudent);
+            this.groupBox1.Controls.Add(this.btnAddToAdministration);
             this.groupBox1.Controls.Add(this.tbxSalary);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -96,85 +87,44 @@ namespace StudentSystemPart1
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Add Form";
             // 
-            // label1
+            // rdbTeacher
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "PCN:";
+            this.rdbTeacher.AutoSize = true;
+            this.rdbTeacher.Location = new System.Drawing.Point(10, 156);
+            this.rdbTeacher.Name = "rdbTeacher";
+            this.rdbTeacher.Size = new System.Drawing.Size(65, 17);
+            this.rdbTeacher.TabIndex = 16;
+            this.rdbTeacher.TabStop = true;
+            this.rdbTeacher.Text = "Teacher";
+            this.rdbTeacher.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // rdbStudent
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 43);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Name:";
+            this.rdbStudent.AutoSize = true;
+            this.rdbStudent.Location = new System.Drawing.Point(10, 133);
+            this.rdbStudent.Name = "rdbStudent";
+            this.rdbStudent.Size = new System.Drawing.Size(62, 17);
+            this.rdbStudent.TabIndex = 15;
+            this.rdbStudent.TabStop = true;
+            this.rdbStudent.Text = "Student";
+            this.rdbStudent.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // btnAddToAdministration
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Age:";
+            this.btnAddToAdministration.Location = new System.Drawing.Point(114, 156);
+            this.btnAddToAdministration.Name = "btnAddToAdministration";
+            this.btnAddToAdministration.Size = new System.Drawing.Size(123, 23);
+            this.btnAddToAdministration.TabIndex = 14;
+            this.btnAddToAdministration.Text = "Add to administration";
+            this.btnAddToAdministration.UseVisualStyleBackColor = true;
+            this.btnAddToAdministration.Click += new System.EventHandler(this.btnAddToAdministration_Click);
             // 
-            // label4
+            // tbxSalary
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(7, 95);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Year at school:";
-            // 
-            // tbxPCN
-            // 
-            this.tbxPCN.Location = new System.Drawing.Point(91, 17);
-            this.tbxPCN.Name = "tbxPCN";
-            this.tbxPCN.Size = new System.Drawing.Size(100, 20);
-            this.tbxPCN.TabIndex = 4;
-            // 
-            // tbxName
-            // 
-            this.tbxName.Location = new System.Drawing.Point(91, 40);
-            this.tbxName.Name = "tbxName";
-            this.tbxName.Size = new System.Drawing.Size(100, 20);
-            this.tbxName.TabIndex = 5;
-            // 
-            // tbxAge
-            // 
-            this.tbxAge.Location = new System.Drawing.Point(91, 66);
-            this.tbxAge.Name = "tbxAge";
-            this.tbxAge.Size = new System.Drawing.Size(100, 20);
-            this.tbxAge.TabIndex = 6;
-            // 
-            // tbxYearsAtSchool
-            // 
-            this.tbxYearsAtSchool.Location = new System.Drawing.Point(91, 92);
-            this.tbxYearsAtSchool.Name = "tbxYearsAtSchool";
-            this.tbxYearsAtSchool.Size = new System.Drawing.Size(100, 20);
-            this.tbxYearsAtSchool.TabIndex = 7;
-            // 
-            // tbxECs
-            // 
-            this.tbxECs.Location = new System.Drawing.Point(280, 92);
-            this.tbxECs.Name = "tbxECs";
-            this.tbxECs.Size = new System.Drawing.Size(100, 20);
-            this.tbxECs.TabIndex = 8;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(243, 95);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "EC\'s:";
+            this.tbxSalary.Location = new System.Drawing.Point(457, 92);
+            this.tbxSalary.Name = "tbxSalary";
+            this.tbxSalary.Size = new System.Drawing.Size(100, 20);
+            this.tbxSalary.TabIndex = 11;
             // 
             // label6
             // 
@@ -185,72 +135,85 @@ namespace StudentSystemPart1
             this.label6.TabIndex = 10;
             this.label6.Text = "Salary:";
             // 
-            // tbxSalary
+            // label5
             // 
-            this.tbxSalary.Location = new System.Drawing.Point(457, 92);
-            this.tbxSalary.Name = "tbxSalary";
-            this.tbxSalary.Size = new System.Drawing.Size(100, 20);
-            this.tbxSalary.TabIndex = 11;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(243, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(31, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "EC\'s:";
             // 
-            // btnNewPerson
+            // tbxECs
             // 
-            this.btnNewPerson.Location = new System.Drawing.Point(10, 141);
-            this.btnNewPerson.Name = "btnNewPerson";
-            this.btnNewPerson.Size = new System.Drawing.Size(123, 23);
-            this.btnNewPerson.TabIndex = 12;
-            this.btnNewPerson.Text = "New person";
-            this.btnNewPerson.UseVisualStyleBackColor = true;
-            this.btnNewPerson.Click += new System.EventHandler(this.btnNewPerson_Click);
+            this.tbxECs.Location = new System.Drawing.Point(280, 92);
+            this.tbxECs.Name = "tbxECs";
+            this.tbxECs.Size = new System.Drawing.Size(100, 20);
+            this.tbxECs.TabIndex = 8;
             // 
-            // btnNewTeacher
+            // tbxYearsAtSchool
             // 
-            this.btnNewTeacher.Location = new System.Drawing.Point(434, 141);
-            this.btnNewTeacher.Name = "btnNewTeacher";
-            this.btnNewTeacher.Size = new System.Drawing.Size(123, 23);
-            this.btnNewTeacher.TabIndex = 13;
-            this.btnNewTeacher.Text = "New teacher";
-            this.btnNewTeacher.UseVisualStyleBackColor = true;
-            this.btnNewTeacher.Click += new System.EventHandler(this.btnNewTeacher_Click);
+            this.tbxYearsAtSchool.Location = new System.Drawing.Point(91, 92);
+            this.tbxYearsAtSchool.Name = "tbxYearsAtSchool";
+            this.tbxYearsAtSchool.Size = new System.Drawing.Size(100, 20);
+            this.tbxYearsAtSchool.TabIndex = 7;
             // 
-            // btnNewStudent
+            // tbxAge
             // 
-            this.btnNewStudent.Location = new System.Drawing.Point(229, 141);
-            this.btnNewStudent.Name = "btnNewStudent";
-            this.btnNewStudent.Size = new System.Drawing.Size(123, 23);
-            this.btnNewStudent.TabIndex = 14;
-            this.btnNewStudent.Text = "New student";
-            this.btnNewStudent.UseVisualStyleBackColor = true;
-            this.btnNewStudent.Click += new System.EventHandler(this.btnNewStudent_Click);
+            this.tbxAge.Location = new System.Drawing.Point(91, 66);
+            this.tbxAge.Name = "tbxAge";
+            this.tbxAge.Size = new System.Drawing.Size(100, 20);
+            this.tbxAge.TabIndex = 6;
             // 
-            // btnShowAllStudent
+            // tbxName
             // 
-            this.btnShowAllStudent.Location = new System.Drawing.Point(241, 229);
-            this.btnShowAllStudent.Name = "btnShowAllStudent";
-            this.btnShowAllStudent.Size = new System.Drawing.Size(123, 23);
-            this.btnShowAllStudent.TabIndex = 17;
-            this.btnShowAllStudent.Text = "Show all students";
-            this.btnShowAllStudent.UseVisualStyleBackColor = true;
-            this.btnShowAllStudent.Click += new System.EventHandler(this.btnShowAllStudent_Click);
+            this.tbxName.Location = new System.Drawing.Point(91, 40);
+            this.tbxName.Name = "tbxName";
+            this.tbxName.Size = new System.Drawing.Size(100, 20);
+            this.tbxName.TabIndex = 5;
             // 
-            // btnShowAllTeacher
+            // tbxPCN
             // 
-            this.btnShowAllTeacher.Location = new System.Drawing.Point(446, 229);
-            this.btnShowAllTeacher.Name = "btnShowAllTeacher";
-            this.btnShowAllTeacher.Size = new System.Drawing.Size(123, 23);
-            this.btnShowAllTeacher.TabIndex = 16;
-            this.btnShowAllTeacher.Text = "Show all teachers";
-            this.btnShowAllTeacher.UseVisualStyleBackColor = true;
-            this.btnShowAllTeacher.Click += new System.EventHandler(this.btnShowAllTeacher_Click);
+            this.tbxPCN.Location = new System.Drawing.Point(91, 17);
+            this.tbxPCN.Name = "tbxPCN";
+            this.tbxPCN.Size = new System.Drawing.Size(100, 20);
+            this.tbxPCN.TabIndex = 4;
             // 
-            // btnShowAllPerson
+            // label4
             // 
-            this.btnShowAllPerson.Location = new System.Drawing.Point(22, 229);
-            this.btnShowAllPerson.Name = "btnShowAllPerson";
-            this.btnShowAllPerson.Size = new System.Drawing.Size(123, 23);
-            this.btnShowAllPerson.TabIndex = 15;
-            this.btnShowAllPerson.Text = "Show all persons";
-            this.btnShowAllPerson.UseVisualStyleBackColor = true;
-            this.btnShowAllPerson.Click += new System.EventHandler(this.btnShowAllPerson_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(7, 95);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Year at school:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Age:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Name:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "PCN:";
             // 
             // lbxShowInfo
             // 
@@ -260,105 +223,9 @@ namespace StudentSystemPart1
             this.lbxShowInfo.Size = new System.Drawing.Size(547, 121);
             this.lbxShowInfo.TabIndex = 18;
             // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.btnShowInfoPerson);
-            this.groupBox2.Controls.Add(this.tbxShowPerson);
-            this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Location = new System.Drawing.Point(22, 413);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(203, 178);
-            this.groupBox2.TabIndex = 15;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Person form";
-            // 
-            // btnShowInfoPerson
-            // 
-            this.btnShowInfoPerson.Location = new System.Drawing.Point(6, 43);
-            this.btnShowInfoPerson.Name = "btnShowInfoPerson";
-            this.btnShowInfoPerson.Size = new System.Drawing.Size(123, 23);
-            this.btnShowInfoPerson.TabIndex = 12;
-            this.btnShowInfoPerson.Text = "Show info";
-            this.btnShowInfoPerson.UseVisualStyleBackColor = true;
-            this.btnShowInfoPerson.Click += new System.EventHandler(this.btnShowInfoPerson_Click);
-            // 
-            // tbxShowPerson
-            // 
-            this.tbxShowPerson.Location = new System.Drawing.Point(91, 17);
-            this.tbxShowPerson.Name = "tbxShowPerson";
-            this.tbxShowPerson.Size = new System.Drawing.Size(100, 20);
-            this.tbxShowPerson.TabIndex = 4;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 20);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 13);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "PCN:";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.btnAddECs);
-            this.groupBox3.Controls.Add(this.tbxAddECs);
-            this.groupBox3.Controls.Add(this.btnStartNewYear);
-            this.groupBox3.Controls.Add(this.btnShowInfoStudent);
-            this.groupBox3.Controls.Add(this.tbxShowStudent);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Location = new System.Drawing.Point(241, 413);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(203, 178);
-            this.groupBox3.TabIndex = 16;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Student form";
-            // 
-            // btnShowInfoStudent
-            // 
-            this.btnShowInfoStudent.Location = new System.Drawing.Point(6, 43);
-            this.btnShowInfoStudent.Name = "btnShowInfoStudent";
-            this.btnShowInfoStudent.Size = new System.Drawing.Size(185, 23);
-            this.btnShowInfoStudent.TabIndex = 12;
-            this.btnShowInfoStudent.Text = "Show info";
-            this.btnShowInfoStudent.UseVisualStyleBackColor = true;
-            this.btnShowInfoStudent.Click += new System.EventHandler(this.btnShowInfoStudent_Click);
-            // 
-            // tbxShowStudent
-            // 
-            this.tbxShowStudent.Location = new System.Drawing.Point(91, 17);
-            this.tbxShowStudent.Name = "tbxShowStudent";
-            this.tbxShowStudent.Size = new System.Drawing.Size(100, 20);
-            this.tbxShowStudent.TabIndex = 4;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 20);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(32, 13);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "PCN:";
-            // 
-            // btnStartNewYear
-            // 
-            this.btnStartNewYear.Location = new System.Drawing.Point(6, 72);
-            this.btnStartNewYear.Name = "btnStartNewYear";
-            this.btnStartNewYear.Size = new System.Drawing.Size(185, 23);
-            this.btnStartNewYear.TabIndex = 13;
-            this.btnStartNewYear.Text = "Start new schoolyear";
-            this.btnStartNewYear.UseVisualStyleBackColor = true;
-            this.btnStartNewYear.Click += new System.EventHandler(this.btnStartNewYear_Click);
-            // 
-            // tbxAddECs
-            // 
-            this.tbxAddECs.Location = new System.Drawing.Point(6, 107);
-            this.tbxAddECs.Name = "tbxAddECs";
-            this.tbxAddECs.Size = new System.Drawing.Size(64, 20);
-            this.tbxAddECs.TabIndex = 14;
-            // 
             // btnAddECs
             // 
-            this.btnAddECs.Location = new System.Drawing.Point(104, 101);
+            this.btnAddECs.Location = new System.Drawing.Point(104, 137);
             this.btnAddECs.Name = "btnAddECs";
             this.btnAddECs.Size = new System.Drawing.Size(87, 23);
             this.btnAddECs.TabIndex = 15;
@@ -366,46 +233,76 @@ namespace StudentSystemPart1
             this.btnAddECs.UseVisualStyleBackColor = true;
             this.btnAddECs.Click += new System.EventHandler(this.btnAddECs_Click);
             // 
+            // tbxAddECs
+            // 
+            this.tbxAddECs.Location = new System.Drawing.Point(6, 140);
+            this.tbxAddECs.Name = "tbxAddECs";
+            this.tbxAddECs.Size = new System.Drawing.Size(64, 20);
+            this.tbxAddECs.TabIndex = 14;
+            // 
+            // btnCelebrateBirthday
+            // 
+            this.btnCelebrateBirthday.Location = new System.Drawing.Point(6, 79);
+            this.btnCelebrateBirthday.Name = "btnCelebrateBirthday";
+            this.btnCelebrateBirthday.Size = new System.Drawing.Size(185, 23);
+            this.btnCelebrateBirthday.TabIndex = 13;
+            this.btnCelebrateBirthday.Text = "Celebrate Birthday";
+            this.btnCelebrateBirthday.UseVisualStyleBackColor = true;
+            this.btnCelebrateBirthday.Click += new System.EventHandler(this.btnCelebrateBirthday_Click);
+            // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.btnCelebrateBirthday);
+            this.groupBox4.Controls.Add(this.btnAddECs);
             this.groupBox4.Controls.Add(this.btnPromote);
-            this.groupBox4.Controls.Add(this.btnStartNewSchoolYearTeach);
-            this.groupBox4.Controls.Add(this.btnShowInfoTeacher);
-            this.groupBox4.Controls.Add(this.tbxShowTeacher);
+            this.groupBox4.Controls.Add(this.tbxAddECs);
+            this.groupBox4.Controls.Add(this.btnStartNewSchoolYear);
+            this.groupBox4.Controls.Add(this.btnShowInfo);
+            this.groupBox4.Controls.Add(this.tbxSearchPCN);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Location = new System.Drawing.Point(460, 413);
+            this.groupBox4.Location = new System.Drawing.Point(594, 229);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(203, 178);
+            this.groupBox4.Size = new System.Drawing.Size(203, 195);
             this.groupBox4.TabIndex = 17;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Teacher form";
+            this.groupBox4.Text = "Action Form";
             // 
-            // btnStartNewSchoolYearTeach
+            // btnPromote
             // 
-            this.btnStartNewSchoolYearTeach.Location = new System.Drawing.Point(6, 78);
-            this.btnStartNewSchoolYearTeach.Name = "btnStartNewSchoolYearTeach";
-            this.btnStartNewSchoolYearTeach.Size = new System.Drawing.Size(185, 23);
-            this.btnStartNewSchoolYearTeach.TabIndex = 13;
-            this.btnStartNewSchoolYearTeach.Text = "Start new schoolyear";
-            this.btnStartNewSchoolYearTeach.UseVisualStyleBackColor = true;
-            this.btnStartNewSchoolYearTeach.Click += new System.EventHandler(this.btnStartNewSchoolYearTeach_Click);
+            this.btnPromote.Location = new System.Drawing.Point(6, 166);
+            this.btnPromote.Name = "btnPromote";
+            this.btnPromote.Size = new System.Drawing.Size(185, 23);
+            this.btnPromote.TabIndex = 14;
+            this.btnPromote.Text = "Promote";
+            this.btnPromote.UseVisualStyleBackColor = true;
+            this.btnPromote.Click += new System.EventHandler(this.btnPromote_Click);
             // 
-            // btnShowInfoTeacher
+            // btnStartNewSchoolYear
             // 
-            this.btnShowInfoTeacher.Location = new System.Drawing.Point(6, 43);
-            this.btnShowInfoTeacher.Name = "btnShowInfoTeacher";
-            this.btnShowInfoTeacher.Size = new System.Drawing.Size(185, 23);
-            this.btnShowInfoTeacher.TabIndex = 12;
-            this.btnShowInfoTeacher.Text = "Show info";
-            this.btnShowInfoTeacher.UseVisualStyleBackColor = true;
-            this.btnShowInfoTeacher.Click += new System.EventHandler(this.btnShowInfoTeacher_Click);
+            this.btnStartNewSchoolYear.Location = new System.Drawing.Point(6, 108);
+            this.btnStartNewSchoolYear.Name = "btnStartNewSchoolYear";
+            this.btnStartNewSchoolYear.Size = new System.Drawing.Size(185, 23);
+            this.btnStartNewSchoolYear.TabIndex = 13;
+            this.btnStartNewSchoolYear.Text = "Start new schoolyear";
+            this.btnStartNewSchoolYear.UseVisualStyleBackColor = true;
+            this.btnStartNewSchoolYear.Click += new System.EventHandler(this.btnStartNewSchoolYearTeach_Click);
             // 
-            // tbxShowTeacher
+            // btnShowInfo
             // 
-            this.tbxShowTeacher.Location = new System.Drawing.Point(91, 17);
-            this.tbxShowTeacher.Name = "tbxShowTeacher";
-            this.tbxShowTeacher.Size = new System.Drawing.Size(100, 20);
-            this.tbxShowTeacher.TabIndex = 4;
+            this.btnShowInfo.Location = new System.Drawing.Point(6, 50);
+            this.btnShowInfo.Name = "btnShowInfo";
+            this.btnShowInfo.Size = new System.Drawing.Size(185, 23);
+            this.btnShowInfo.TabIndex = 12;
+            this.btnShowInfo.Text = "Show info";
+            this.btnShowInfo.UseVisualStyleBackColor = true;
+            this.btnShowInfo.Click += new System.EventHandler(this.btnShowInfo_Click);
+            // 
+            // tbxSearchPCN
+            // 
+            this.tbxSearchPCN.Location = new System.Drawing.Point(91, 17);
+            this.tbxSearchPCN.Name = "tbxSearchPCN";
+            this.tbxSearchPCN.Size = new System.Drawing.Size(100, 20);
+            this.tbxSearchPCN.TabIndex = 4;
             // 
             // label8
             // 
@@ -416,49 +313,72 @@ namespace StudentSystemPart1
             this.label8.TabIndex = 0;
             this.label8.Text = "PCN:";
             // 
-            // btnPromote
+            // cbShowPerson
             // 
-            this.btnPromote.Location = new System.Drawing.Point(6, 107);
-            this.btnPromote.Name = "btnPromote";
-            this.btnPromote.Size = new System.Drawing.Size(185, 23);
-            this.btnPromote.TabIndex = 14;
-            this.btnPromote.Text = "Promote";
-            this.btnPromote.UseVisualStyleBackColor = true;
-            this.btnPromote.Click += new System.EventHandler(this.btnPromote_Click);
+            this.cbShowPerson.FormattingEnabled = true;
+            this.cbShowPerson.Items.AddRange(new object[] {
+            "All",
+            "Teachers",
+            "Students"});
+            this.cbShowPerson.Location = new System.Drawing.Point(22, 413);
+            this.cbShowPerson.Name = "cbShowPerson";
+            this.cbShowPerson.Size = new System.Drawing.Size(121, 21);
+            this.cbShowPerson.TabIndex = 19;
+            // 
+            // btnShowPersons
+            // 
+            this.btnShowPersons.Location = new System.Drawing.Point(162, 413);
+            this.btnShowPersons.Name = "btnShowPersons";
+            this.btnShowPersons.Size = new System.Drawing.Size(230, 23);
+            this.btnShowPersons.TabIndex = 20;
+            this.btnShowPersons.Text = "Show persons";
+            this.btnShowPersons.UseVisualStyleBackColor = true;
+            this.btnShowPersons.Click += new System.EventHandler(this.btnShowPersons_Click);
+            // 
+            // btnPartialName
+            // 
+            this.btnPartialName.Location = new System.Drawing.Point(162, 443);
+            this.btnPartialName.Name = "btnPartialName";
+            this.btnPartialName.Size = new System.Drawing.Size(230, 23);
+            this.btnPartialName.TabIndex = 21;
+            this.btnPartialName.Text = "Search via partial name";
+            this.btnPartialName.UseVisualStyleBackColor = true;
+            this.btnPartialName.Click += new System.EventHandler(this.btnPartialName_Click);
+            // 
+            // txbPartialName
+            // 
+            this.txbPartialName.Location = new System.Drawing.Point(21, 445);
+            this.txbPartialName.Name = "txbPartialName";
+            this.txbPartialName.Size = new System.Drawing.Size(122, 20);
+            this.txbPartialName.TabIndex = 22;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 723);
+            this.Controls.Add(this.txbPartialName);
+            this.Controls.Add(this.btnPartialName);
+            this.Controls.Add(this.btnShowPersons);
+            this.Controls.Add(this.cbShowPerson);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.lbxShowInfo);
-            this.Controls.Add(this.btnShowAllStudent);
-            this.Controls.Add(this.btnShowAllTeacher);
-            this.Controls.Add(this.btnShowAllPerson);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnNewStudent;
-        private System.Windows.Forms.Button btnNewTeacher;
-        private System.Windows.Forms.Button btnNewPerson;
+        private System.Windows.Forms.Button btnAddToAdministration;
         private System.Windows.Forms.TextBox tbxSalary;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
@@ -471,27 +391,22 @@ namespace StudentSystemPart1
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btnShowAllStudent;
-        private System.Windows.Forms.Button btnShowAllTeacher;
-        private System.Windows.Forms.Button btnShowAllPerson;
         private System.Windows.Forms.ListBox lbxShowInfo;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btnShowInfoPerson;
-        private System.Windows.Forms.TextBox tbxShowPerson;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button btnAddECs;
         private System.Windows.Forms.TextBox tbxAddECs;
-        private System.Windows.Forms.Button btnStartNewYear;
-        private System.Windows.Forms.Button btnShowInfoStudent;
-        private System.Windows.Forms.TextBox tbxShowStudent;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnCelebrateBirthday;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button btnPromote;
-        private System.Windows.Forms.Button btnStartNewSchoolYearTeach;
-        private System.Windows.Forms.Button btnShowInfoTeacher;
-        private System.Windows.Forms.TextBox tbxShowTeacher;
+        private System.Windows.Forms.Button btnStartNewSchoolYear;
+        private System.Windows.Forms.Button btnShowInfo;
+        private System.Windows.Forms.TextBox tbxSearchPCN;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton rdbTeacher;
+        private System.Windows.Forms.RadioButton rdbStudent;
+        private System.Windows.Forms.ComboBox cbShowPerson;
+        private System.Windows.Forms.Button btnShowPersons;
+        private System.Windows.Forms.Button btnPartialName;
+        private System.Windows.Forms.TextBox txbPartialName;
     }
 }
 
