@@ -13,10 +13,16 @@ namespace StudentSystemPart1
     public partial class Form1 : Form
     {
         Administration admin;
+        bool teacherBox;
         public Form1()
         {
             InitializeComponent();
             admin = new Administration();
+            rdbStudent.Checked = true;
+            teacherBox = false;
+            tbxSalary.Enabled = false;
+            tbxECs.Enabled = true;
+            
         }
 
         private void btnAddToAdministration_Click(object sender, EventArgs e)
@@ -151,6 +157,13 @@ namespace StudentSystemPart1
                     lbxShowInfo.Items.Add(p);
                 }
             }
+        }
+
+        private void rdbStudent_CheckedChanged(object sender, EventArgs e)
+        {
+            tbxECs.Enabled = teacherBox;
+            teacherBox = !teacherBox;
+            tbxSalary.Enabled = teacherBox;
         }
     }
 }

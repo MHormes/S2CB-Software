@@ -108,6 +108,7 @@ namespace StudentSystemPart1
             this.rdbStudent.TabStop = true;
             this.rdbStudent.Text = "Student";
             this.rdbStudent.UseVisualStyleBackColor = true;
+            this.rdbStudent.CheckedChanged += new System.EventHandler(this.rdbStudent_CheckedChanged);
             // 
             // btnAddToAdministration
             // 
