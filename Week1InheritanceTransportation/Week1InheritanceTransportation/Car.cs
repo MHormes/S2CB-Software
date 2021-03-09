@@ -17,6 +17,18 @@ namespace Week1InheritanceTransportation
             this.color = color;
         }
 
+        public void SetLicencePlate(string licencePlate)
+        {
+            try
+            {
+                int licencePlateAsDigits = Convert.ToInt32(licencePlate);
+                this.licencePlate = licencePlate;
+            }
+            catch(Exception ex)
+            {
+                
+            }
+        }
         public override string ToString()
         {
             return $"Car: lp: {licencePlate}, color: {color}, speed: {base.ToString()}";
