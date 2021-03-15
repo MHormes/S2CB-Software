@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>440</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Vehicle
+--
+#makeAndModel: string
+#licensePlate: string
+#gasPerKM: double
+#consumedFuel: decimal
+#totalKM: double
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>730</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Truck
+--
+-available: bool
+-maxWeight: double
+-maxVolume: double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>700</x>
+      <y>620</y>
+      <w>310</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>290.0;10.0;290.0;70.0;10.0;70.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1150</x>
+      <y>730</y>
+      <w>210</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Car
+--
+-available: bool
+-maxPassenger: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>670</y>
+      <w>300</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;280.0;20.0;280.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>240</x>
+      <y>90</y>
+      <w>290</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>TransportationHub
+--
+-name: string
+-rides: Ride[]
+-completedRides: Ride[]
+-vehicles: Vehicle[]
+-vehiclesOnRide: Vehicle[]
+--
++GetRides(): Ride[]
++GetCompleteRides(): Ride[]
++GetVehicles(): Vehicle[]
++GetVehiclesOnRide(): Vehicle[]
++AddVehicle(): void
++ModifyVehicle(v: Vehicle): void
++ReserveRide(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>490</y>
+      <w>220</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Ride
+--
+-vehicle: Vehicle
+-amountOfPersons: int
+-volumeOfCargo: double
+-weightOfCargo: double
+-priceOfRide: decimal
+-startingPrice: decimal
+-kilometers: int
+-startTime: DateTime
+-endTime: DateTime
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>380</y>
+      <w>50</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0...*
+m2=1</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>520</y>
+      <w>380</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1
+m2=0...*</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>880</x>
+      <y>730</y>
+      <w>210</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Van
+--
+-available: bool
+-maxPassenger: int
+-maxWeight: double
+-maxVolume: double</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>980</x>
+      <y>680</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>520</x>
+      <y>280</y>
+      <w>510</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=0..*
+m2=1</panel_attributes>
+    <additional_attributes>470.0;160.0;470.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
