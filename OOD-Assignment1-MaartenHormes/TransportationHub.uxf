@@ -4,32 +4,35 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>440</y>
-      <w>210</w>
+      <x>810</x>
+      <y>430</y>
+      <w>230</w>
       <h>190</h>
     </coordinates>
     <panel_attributes>Vehicle
 --
+#available: bool
 #makeAndModel: string
 #licensePlate: string
 #gasPerKM: double
+#pricePerKM: double
 #consumedFuel: decimal
 #totalKM: double
---</panel_attributes>
+--
++ToString(): string
++CompareTo(other: Vehicle) int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>600</x>
-      <y>730</y>
+      <x>530</x>
+      <y>720</y>
       <w>210</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>Truck
 --
--available: bool
 -maxWeight: double
 -maxVolume: double</panel_attributes>
     <additional_attributes/>
@@ -37,8 +40,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>620</y>
+      <x>630</x>
+      <y>610</y>
       <w>310</w>
       <h>130</h>
     </coordinates>
@@ -48,22 +51,21 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1150</x>
-      <y>730</y>
+      <x>1080</x>
+      <y>720</y>
       <w>210</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>Car
 --
--available: bool
 -maxPassenger: int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>670</y>
+      <x>910</x>
+      <y>660</y>
       <w>300</w>
       <h>80</h>
     </coordinates>
@@ -73,33 +75,39 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>240</x>
-      <y>90</y>
-      <w>290</w>
-      <h>300</h>
+      <x>150</x>
+      <y>80</y>
+      <w>310</w>
+      <h>320</h>
     </coordinates>
     <panel_attributes>TransportationHub
 --
 -name: string
 -rides: Ride[]
 -completedRides: Ride[]
--vehicles: Vehicle[]
--vehiclesOnRide: Vehicle[]
+-allVehicles: Vehicle[]
+
 --
++SaveAllRides(): Exception
++LoadAllRides(): Exception
 +GetRides(): Ride[]
 +GetCompleteRides(): Ride[]
-+GetVehicles(): Vehicle[]
-+GetVehiclesOnRide(): Vehicle[]
-+AddVehicle(): void
-+ModifyVehicle(v: Vehicle): void
-+ReserveRide(): void</panel_attributes>
++ReserveRide(): void
++SaveAllVehicles(): Exception
++LoadAllVehicles(): Exception
++GetAllVehicles(): Vehicle[]
++AddVehicle(ind: int, 
+   maxPassengers: int, maxWeight: double, 
+   maxVolume: double, makeAndModel: string, 
+   licensePlate: string , gasPerKM: double): void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>490</y>
+      <x>240</x>
+      <y>480</y>
       <w>220</w>
       <h>190</h>
     </coordinates>
@@ -121,40 +129,39 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>380</y>
-      <w>50</w>
-      <h>130</h>
+      <x>360</x>
+      <y>390</y>
+      <w>40</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m1=0...*
+m1=*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
-      <y>520</y>
+      <x>450</x>
+      <y>510</y>
       <w>380</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
-m2=0...*</panel_attributes>
+m2=*</panel_attributes>
     <additional_attributes>360.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>730</y>
+      <x>810</x>
+      <y>720</y>
       <w>210</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>Van
 --
--available: bool
 -maxPassenger: int
 -maxWeight: double
 -maxVolume: double</panel_attributes>
@@ -163,8 +170,8 @@ m2=0...*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
-      <y>680</y>
+      <x>910</x>
+      <y>670</y>
       <w>30</w>
       <h>70</h>
     </coordinates>
@@ -174,14 +181,37 @@ m2=0...*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>520</x>
-      <y>280</y>
-      <w>510</w>
+      <x>450</x>
+      <y>270</y>
+      <w>490</w>
       <h>180</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-m1=0..*
+m1=*
 m2=1</panel_attributes>
     <additional_attributes>470.0;160.0;470.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1160</x>
+      <y>430</y>
+      <w>210</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IComparable</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1030</x>
+      <y>440</y>
+      <w>150</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

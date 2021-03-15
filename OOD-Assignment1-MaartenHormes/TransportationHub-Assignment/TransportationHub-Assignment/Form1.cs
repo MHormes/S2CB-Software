@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace TransportationHub_Assignment
 {
@@ -18,7 +19,11 @@ namespace TransportationHub_Assignment
             TH = new TransportationHub("Borent");
             InitializeComponent();
             FillVehicleListboxes();
+            FillRideListboxes();
         }
+
+
+        //VEHICLES
 
         //METHOD TO FILL THE LISTBOXES OF VEHICLES
         public void FillVehicleListboxes()
@@ -54,7 +59,7 @@ namespace TransportationHub_Assignment
             cbTypeOfVehicle.SelectedIndex = -1;
         }
 
-        //CONTROLS TEXTBOX ENABLE FOR SELECTED INDEX OF CB
+        //CONTROLS TEXTBOX ENABLE FOR SELECTED INDEX OF Combobox vehicle type
         private void cbTypeOfVehicle_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbTypeOfVehicle.SelectedIndex == 0)
@@ -86,6 +91,7 @@ namespace TransportationHub_Assignment
         //PREPARE ADD VEHICLE BUTTON
         private void btnAddVehicle_Click(object sender, EventArgs e)
         {
+            //enable/disable correct buttons and textfields
             btnConfirmAdd.Visible = true;
             btnAddVehicle.Visible = false;
             tbxTotalConsumedFuel.Enabled = false;
@@ -97,9 +103,10 @@ namespace TransportationHub_Assignment
         //CONFIRM ADDING VEHICLE BUTTON
         private void btnConfirmAdd_Click(object sender, EventArgs e)
         {
-            foreach(Vehicle v in TH.GetAllVehicles())
+            //check if licenseplate already exists
+            foreach (Vehicle v in TH.GetAllVehicles())
             {
-                if(v.LicensePlate == tbxLicensePlate.Text)
+                if (v.LicensePlate == tbxLicensePlate.Text)
                 {
                     MessageBox.Show("Licenseplate is already registered");
                     return;
@@ -108,6 +115,7 @@ namespace TransportationHub_Assignment
 
             try
             {
+                //check if textboxes are filled in and assign value (needed since not al vehicle types use all texboxes)
                 int maxPassengers = 0;
                 if (tbxMaxPassengers.Text != "")
                 {
@@ -122,14 +130,17 @@ namespace TransportationHub_Assignment
                 double maxVolume = 0;
                 if (tbxMaxWeight.Text != "")
                 {
-                    maxVolume = Convert.ToDouble(tbxMaxWeight.Text);
+                    maxVolume = Convert.ToDouble(tbxMaxVolume.Text);
                 }
-
                 TH.AddVehicle(cbTypeOfVehicle.SelectedIndex, maxPassengers, maxWeight, maxVolume, tbxMakeAndModel.Text, tbxLicensePlate.Text, Convert.ToDouble(tbxGasPerKM.Text));
                 FillVehicleListboxes();
                 btnAddVehicle.Visible = true;
                 btnConfirmAdd.Visible = false;
 
+            }
+            catch (LicensePlateException lpEx)
+            {
+                MessageBox.Show(lpEx.Message);
             }
             catch (Exception ex)
             {
@@ -142,20 +153,23 @@ namespace TransportationHub_Assignment
         //PREPARE EDIT VEHICLE BUTTON
         private void btnEditSelected_Click(object sender, EventArgs e)
         {
+            //check if vehicle is selected
             if (lbxVehiclesAvailable.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a vehicle to edit");
                 return;
             }
 
+            //enable/disable correct buttons/textboxes
             tbxTotalConsumedFuel.Enabled = false;
             tbxTotalKM.Enabled = false;
             tbxPricePerKM.Enabled = false;
-
             btnEditSelected.Visible = false;
             btnConfirmEditVehicle.Visible = true;
-            Vehicle v = (Vehicle)lbxVehiclesAvailable.SelectedItem;
             lbxVehiclesAvailable.Enabled = false;
+
+            //Assign selected -> check what type of vehicle -> fill in textboxes with existing data
+            Vehicle v = (Vehicle)lbxVehiclesAvailable.SelectedItem;
             if (v is Car)
             {
                 cbTypeOfVehicle.SelectedIndex = 0;
@@ -178,22 +192,22 @@ namespace TransportationHub_Assignment
             tbxMakeAndModel.Text = v.MakeAndModel;
             tbxLicensePlate.Text = v.LicensePlate;
             tbxGasPerKM.Text = $"{v.GasPerKM}";
-            tbxPricePerKM.Text = $"{v.PricePerKM}";
-            tbxTotalConsumedFuel.Text = $"{v.ConsumedFuel}";
+            tbxPricePerKM.Text = v.PricePerKM.ToString("#.##");
+            tbxTotalConsumedFuel.Text = v.ConsumedFuel.ToString("#.##");
             tbxTotalKM.Text = $"{v.TotalKM}";
-
         }
 
         //CONFIRM EDIT SELECTED VEHICLE
         private void btnConfirmEditVehicle_Click(object sender, EventArgs e)
         {
-
             try
             {
-                Vehicle v = (Vehicle)lbxVehiclesAvailable.SelectedItem;
-               
+                //enable/disable correct buttons
                 btnEditSelected.Visible = true;
                 btnConfirmEditVehicle.Visible = false;
+
+                //get correct object and update data via properties
+                Vehicle v = (Vehicle)lbxVehiclesAvailable.SelectedItem;
                 v.MakeAndModel = tbxMakeAndModel.Text;
                 v.LicensePlate = tbxLicensePlate.Text;
                 v.GasPerKM = Convert.ToDouble(tbxGasPerKM.Text);
@@ -220,6 +234,10 @@ namespace TransportationHub_Assignment
                 lbxVehiclesAvailable.SelectedIndex = -1;
                 ClearVehicleTextBoxes();
             }
+            catch (LicensePlateException lpEx)
+            {
+                MessageBox.Show(lpEx.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -228,9 +246,42 @@ namespace TransportationHub_Assignment
 
         }
 
+
+        //RIDES
+
+        //METHOD TO FILL LISTBOXES OF RIDES
+        public void FillRideListboxes()
+        {
+            lbxRidesInProgress.Items.Clear();
+            lbxRidesCompleted.Items.Clear();
+
+            foreach (Ride r in TH.GetAllRides())
+            {
+                if (r.Completed == true)
+                {
+                    lbxRidesCompleted.Items.Add(r);
+                }
+                else
+                {
+                    lbxRidesInProgress.Items.Add(r);
+                }
+            }
+        }
+
+        //CONTROL TEXTBOXES ENABLE BASED ON RADIOBUTTON CHECK
+        private void rbtnPassengers_CheckedChanged(object sender, EventArgs e)
+        {
+            tbxAmountOfPassengers.Enabled = rbtnPassengers.Checked;
+            tbxVolumeOfCargo.Enabled = !rbtnPassengers.Checked;
+            tbxWeightOfCargo.Enabled = !rbtnPassengers.Checked;
+        }
+
+        //GENERAL
+
         //SAVE ALL OBJECTS
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
+            //save vehicles
             if (TH.SaveAllVehicles() == null)
             {
                 return;
@@ -241,6 +292,7 @@ namespace TransportationHub_Assignment
         //LOAD ALL OBJECTS
         private void btnLoadAll_Click(object sender, EventArgs e)
         {
+            //load vehicles
             if (TH.LoadAllVehicles() == null)
             {
                 FillVehicleListboxes();
@@ -250,5 +302,7 @@ namespace TransportationHub_Assignment
             MessageBox.Show(TH.LoadAllVehicles().Message);
 
         }
+
+
     }
 }

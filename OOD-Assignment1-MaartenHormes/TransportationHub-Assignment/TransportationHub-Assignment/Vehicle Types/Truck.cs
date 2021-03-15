@@ -10,20 +10,10 @@ using System.Runtime.Serialization;
 namespace TransportationHub_Assignment
 {
     [Serializable]
-    public class Van:Vehicle
+    public class Truck: Vehicle
     {
-        
-        private int maxPassenger;
         private double maxWeight;
         private double maxVolume;
-
-        
-
-        public int MaxPassenger
-        {
-            get { return this.MaxPassenger; }
-            set { this.maxPassenger = value; }
-        }
 
         public double MaxWeight
         {
@@ -36,12 +26,17 @@ namespace TransportationHub_Assignment
             get { return this.maxVolume; }
             set { this.maxVolume = value; }
         }
-        public Van(bool available, int maxPassenger, double maxWeight, double maxVolume, string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM): base(makeAndModel, licensePlate, gasPerKM, pricePerKM, consumedFuel, totalKM)
+
+        public Truck(string type, double maxWeight, double maxVolume, string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM): base(type, makeAndModel, licensePlate, gasPerKM, pricePerKM, consumedFuel, totalKM)
         {
-            
-            MaxPassenger = maxPassenger;
+            Type = type;
             MaxWeight = maxWeight;
             MaxVolume = maxVolume;
+        }
+
+        public override string ToString()
+        {
+            return $"Type:{Type}.Max load/volume:{MaxWeight}/{MaxVolume}.Name:{MakeAndModel}.License plate:{LicensePlate}";
         }
     }
 }

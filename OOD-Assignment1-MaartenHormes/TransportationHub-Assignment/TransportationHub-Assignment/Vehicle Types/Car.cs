@@ -9,24 +9,22 @@ namespace TransportationHub_Assignment
     [Serializable]
     public class Car: Vehicle
     {
-        private bool available;
         private int maxPassenger;
-
-        public bool Available
-        {
-            get { return this.available; }
-            set { this.available = value; }
-        }
 
         public int MaxPassenger
         {
             get { return this.maxPassenger; }
             set { this.maxPassenger = value; }
         }
-        public Car(bool available, int maxPassenger, string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM): base(makeAndModel, licensePlate, gasPerKM, pricePerKM, consumedFuel, totalKM)
+        public Car(string type, int maxPassenger, string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM): base(type, makeAndModel, licensePlate, gasPerKM, pricePerKM, consumedFuel, totalKM)
         {
-            Available = available;
+            Type = type;
             MaxPassenger = maxPassenger;
+        }
+
+        public override string ToString()
+        {
+            return $"Type:{Type}.Max people:{MaxPassenger}.Name:{MakeAndModel}.License plate:{LicensePlate}";
         }
     }
 }

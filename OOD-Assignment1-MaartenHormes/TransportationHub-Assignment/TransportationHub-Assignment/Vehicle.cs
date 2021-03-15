@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
-
+using System.Text.RegularExpressions;
 
 namespace TransportationHub_Assignment
 {
     [Serializable]
-    public class Vehicle : IComparable<Vehicle>
+    public abstract class Vehicle : IComparable<Vehicle>
     {
         protected bool available;
+        protected string type;
         protected string makeAndModel;
         protected string licensePlate;
         protected double gasPerKM;
@@ -24,11 +25,24 @@ namespace TransportationHub_Assignment
 
         public bool Available
         { get { return this.available; } set { this.available = value; } }
+
+        public string Type { get { return this.type; } set { this.type = value; } }
         public string MakeAndModel
         { get { return this.makeAndModel; } set { this.makeAndModel = value; } }
 
         public string LicensePlate
-        { get { return this.licensePlate; } set { this.licensePlate = value; } }
+        {
+            get { return this.licensePlate; }
+            set
+            {
+                //CHECK IF LICENSE PLATE IS IS CORRECT FORMAT
+                if (!Regex.IsMatch(value, @"^[0-9]{3}-[A-z]{2}-[0-9]{1}$"))
+                {
+                    throw new LicensePlateException(value);
+                }
+                this.licensePlate = value;
+            }
+        }
 
         public double GasPerKM
         { get { return this.gasPerKM; } set { this.gasPerKM = value; } }
@@ -42,9 +56,10 @@ namespace TransportationHub_Assignment
         public double TotalKM
         { get { return this.totalKM; } set { this.totalKM = value; } }
 
-        public Vehicle(string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM)
+        public Vehicle(string type, string makeAndModel, string licensePlate, double gasPerKM, double pricePerKM, decimal consumedFuel, double totalKM)
         {
             Available = true;
+            Type = type;
             MakeAndModel = makeAndModel;
             LicensePlate = licensePlate;
             GasPerKM = gasPerKM;
@@ -53,19 +68,15 @@ namespace TransportationHub_Assignment
             TotalKM = totalKM;
         }
 
-        public override string ToString()
-        {
-            return $"{makeAndModel}:{licensePlate}";
-        }
-
+        //compare for sorting on license plate
         public int CompareTo(Vehicle other)
         {
             int firstThis = Convert.ToInt32(LicensePlate.Substring(0, 3));
             int firstOther = Convert.ToInt32(other.LicensePlate.Substring(0, 3));
             string secondThis = LicensePlate.Substring(3, 2);
             string secondOther = other.LicensePlate.Substring(3, 2);
-            if(firstOther > firstThis) { return -1; }
-            else if(firstOther < firstThis){ return 1; }
+            if (firstOther > firstThis) { return -1; }
+            else if (firstOther < firstThis) { return 1; }
             else
             {
                 return string.Compare(secondThis, secondOther);

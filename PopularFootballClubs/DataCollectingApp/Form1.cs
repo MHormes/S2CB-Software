@@ -38,7 +38,7 @@ namespace DataCollectingApp
                 sw = new StreamWriter(fs);
 
                 sw.WriteLine(tbxFavoriteClubs.Text);
-                tbxFavoriteClubs.Clear();1
+                tbxFavoriteClubs.Clear();
             }
             catch(IOException ex)
             {
