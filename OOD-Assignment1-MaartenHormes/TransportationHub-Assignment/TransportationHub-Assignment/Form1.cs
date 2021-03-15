@@ -14,12 +14,22 @@ namespace TransportationHub_Assignment
     public partial class Form1 : Form
     {
         TransportationHub TH;
+        decimal startingPrice;
         public Form1()
         {
             TH = new TransportationHub("Borent");
             InitializeComponent();
             FillVehicleListboxes();
             FillRideListboxes();
+            //start price for any ride can be adjusted here
+            startingPrice = 10.50m;
+            lblStartingPrice.Text = $"Starting price of any ride: {startingPrice}";
+            
+            //STYLE DATETIMEPICKERS IN RIGHT FORMAT
+            dtpStart.Format = DateTimePickerFormat.Custom;
+            dtpStart.CustomFormat = "dd/MM/yyyy HH:mm";
+            dtpEnd.Format = DateTimePickerFormat.Custom;
+            dtpEnd.CustomFormat = "dd/MM/yyyy HH:mm";
         }
 
 
@@ -29,7 +39,9 @@ namespace TransportationHub_Assignment
         public void FillVehicleListboxes()
         {
             lbxVehiclesAvailable.Items.Clear();
+            lbxVehiclesAvailable.Items.Add("ALL AVAILABLE VEHICLES:");
             lbxVehiclesOnRide.Items.Clear();
+            lbxVehiclesOnRide.Items.Add("ALL VEHICLES ON A RIDE:");
 
             foreach (Vehicle v in TH.GetAllVehicles())
             {
@@ -134,8 +146,11 @@ namespace TransportationHub_Assignment
                 }
                 TH.AddVehicle(cbTypeOfVehicle.SelectedIndex, maxPassengers, maxWeight, maxVolume, tbxMakeAndModel.Text, tbxLicensePlate.Text, Convert.ToDouble(tbxGasPerKM.Text));
                 FillVehicleListboxes();
+
+                //Disable/enable correct buttons
                 btnAddVehicle.Visible = true;
                 btnConfirmAdd.Visible = false;
+                ClearVehicleTextBoxes();
 
             }
             catch (LicensePlateException lpEx)
@@ -202,10 +217,6 @@ namespace TransportationHub_Assignment
         {
             try
             {
-                //enable/disable correct buttons
-                btnEditSelected.Visible = true;
-                btnConfirmEditVehicle.Visible = false;
-
                 //get correct object and update data via properties
                 Vehicle v = (Vehicle)lbxVehiclesAvailable.SelectedItem;
                 v.MakeAndModel = tbxMakeAndModel.Text;
@@ -230,6 +241,10 @@ namespace TransportationHub_Assignment
                     ((Truck)v).MaxVolume = Convert.ToDouble(tbxMaxVolume.Text);
                 }
 
+                //enable/disable correct buttons
+                btnEditSelected.Visible = true;
+                btnConfirmEditVehicle.Visible = false;
+                lbxVehiclesAvailable.Enabled = true;
                 FillVehicleListboxes();
                 lbxVehiclesAvailable.SelectedIndex = -1;
                 ClearVehicleTextBoxes();
@@ -242,7 +257,7 @@ namespace TransportationHub_Assignment
             {
                 MessageBox.Show(ex.Message);
             }
-            finally { lbxVehiclesAvailable.Enabled = true; }
+            finally {  }
 
         }
 
@@ -253,7 +268,9 @@ namespace TransportationHub_Assignment
         public void FillRideListboxes()
         {
             lbxRidesInProgress.Items.Clear();
+            lbxRidesInProgress.Items.Add("ALL RIDES STILL IN PROGRESS:");
             lbxRidesCompleted.Items.Clear();
+            lbxRidesCompleted.Items.Add("ALL RIDES ALREADY COMPLETED:");
 
             foreach (Ride r in TH.GetAllRides())
             {
@@ -268,12 +285,72 @@ namespace TransportationHub_Assignment
             }
         }
 
+        //METHOD TO CLEAR RIDE TEXTBOXES
+        public void ClearRideTextboxes()
+        {
+            tbxKMToTravel.Text = "";
+            tbxAmountOfPassengers.Text = "";
+            tbxWeightOfCargo.Text = "";
+            tbxVolumeOfCargo.Text = "";
+            dtpStart.Value = DateTime.Now;
+            dtpEnd.Value = DateTime.Now;
+        }
+
+        //Clears all textboxes
+        private void btnClearRides_Click(object sender, EventArgs e)
+        {
+            ClearRideTextboxes();
+        }
+
         //CONTROL TEXTBOXES ENABLE BASED ON RADIOBUTTON CHECK
         private void rbtnPassengers_CheckedChanged(object sender, EventArgs e)
         {
             tbxAmountOfPassengers.Enabled = rbtnPassengers.Checked;
             tbxVolumeOfCargo.Enabled = !rbtnPassengers.Checked;
             tbxWeightOfCargo.Enabled = !rbtnPassengers.Checked;
+        }
+        
+        //RESERVE RIDE AND ADD TO LISTBOX
+        private void btnReserveRide_Click(object sender, EventArgs e)
+        {
+            int amountOfPassenger = 0;
+            if(tbxAmountOfPassengers.Text != "")
+            {
+                amountOfPassenger = Convert.ToInt32(tbxAmountOfPassengers.Text);
+            }
+            double volumeOfCargo = 0;
+            if(tbxVolumeOfCargo.Text != "")
+            {
+                volumeOfCargo = Convert.ToDouble(tbxVolumeOfCargo.Text);
+            }
+            double weightOfCargo = 0;
+            if(tbxWeightOfCargo.Text != "")
+            {
+                weightOfCargo = Convert.ToDouble(tbxWeightOfCargo.Text);
+            }
+            int ind = 1;
+            if (rbtnPassengers.Checked)
+            {
+                ind = 0;
+            }
+            try
+            {
+                Vehicle v = TH.GetAvailableVehicle(ind, amountOfPassenger, volumeOfCargo, weightOfCargo);
+                if(v == null)
+                {
+                    MessageBox.Show("No available vehicle found for you reservation");
+                    return;
+                }
+                TH.ReserveRide(v, amountOfPassenger, volumeOfCargo, weightOfCargo, 0, startingPrice, Convert.ToInt32(tbxKMToTravel.Text), dtpStart.Value, dtpEnd.Value);
+                v.Available = false;
+                FillRideListboxes();
+                FillVehicleListboxes();
+                ClearRideTextboxes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         //GENERAL
@@ -282,27 +359,38 @@ namespace TransportationHub_Assignment
         private void btnSaveAll_Click(object sender, EventArgs e)
         {
             //save vehicles
-            if (TH.SaveAllVehicles() == null)
+            if (TH.SaveAllVehicles() != null)
             {
-                return;
+                MessageBox.Show(TH.SaveAllVehicles().Message);
             }
-            MessageBox.Show(TH.SaveAllVehicles().Message);
+            //save rides
+            if (TH.SaveAllRides() != null)
+            {
+                MessageBox.Show(TH.SaveAllRides().Message);
+            }
+            
         }
 
         //LOAD ALL OBJECTS
         private void btnLoadAll_Click(object sender, EventArgs e)
         {
             //load vehicles
-            if (TH.LoadAllVehicles() == null)
+            if (TH.LoadAllVehicles() != null)
             {
-                FillVehicleListboxes();
-
-                return;
+                MessageBox.Show(TH.LoadAllVehicles().Message);
             }
-            MessageBox.Show(TH.LoadAllVehicles().Message);
+            FillVehicleListboxes();
+
+            //load rides
+            if (TH.LoadAllRides() != null)
+            {  
+                MessageBox.Show(TH.LoadAllRides().Message);  
+            }
+            FillRideListboxes();
+
 
         }
 
-
+        
     }
 }

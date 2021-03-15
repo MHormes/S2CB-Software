@@ -36,7 +36,7 @@ namespace TransportationHub_Assignment
             set
             {
                 //CHECK IF LICENSE PLATE IS IS CORRECT FORMAT
-                if (!Regex.IsMatch(value, @"^[0-9]{3}-[A-z]{2}-[0-9]{1}$"))
+                if (!Regex.IsMatch(value, @"^[0-9]{3}-[A-Z]{2}-[0-9]{1}$"))
                 {
                     throw new LicensePlateException(value);
                 }

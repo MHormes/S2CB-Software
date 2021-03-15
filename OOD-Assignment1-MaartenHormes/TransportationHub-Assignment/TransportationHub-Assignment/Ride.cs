@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TransportationHub_Assignment
 {
+    [Serializable]
     public class Ride
     {
         private Vehicle vehicle;
@@ -37,7 +38,7 @@ namespace TransportationHub_Assignment
 
         public override string ToString()
         {
-            return $"Completed:{completed}. Start/End:{startTime}/{endTime}. Type:{vehicle.Type}({vehicle.LicensePlate}) Starting/Total price{startingPrice}/{priceOfRide}";
+            return $"Completed:{completed}. Start date and time: {startTime}. End date and time:{endTime}. Type:{vehicle.Type}({vehicle.LicensePlate}) Starting/Total price{startingPrice}/{priceOfRide}";
         }
     }
 }

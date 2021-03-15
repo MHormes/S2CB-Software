@@ -27,13 +27,41 @@ namespace TransportationHub_Assignment
         //SAVES ALL RIDE OBJECTS
         public Exception SaveAllRides()
         {
-            return null;
+            FileStream fs = null;
+            BinaryFormatter bf = null;
+
+            try
+            {
+                fs = new FileStream("Rides.bin", FileMode.OpenOrCreate, FileAccess.Write);
+                bf = new BinaryFormatter();
+                bf.Serialize(fs, allRides);
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+            finally { if (fs != null) { fs.Close(); } }
         }
 
         //LOADS ALL RIDE OBJECTS
         public Exception LoadAllRides()
         {
-            return null;
+            FileStream fs = null;
+            BinaryFormatter bf = null;
+
+            try
+            {
+                fs = new FileStream("Rides.bin", FileMode.Open, FileAccess.Read);
+                bf = new BinaryFormatter();
+                allRides = (List<Ride>)bf.Deserialize(fs);
+                return null;
+            }
+            catch (Exception ex)
+            { return ex; }
+            finally
+            { if (fs != null) { fs.Close(); } }
         }
 
         //RETURNS LIST OF RIDES
@@ -46,6 +74,7 @@ namespace TransportationHub_Assignment
         public void ReserveRide(Vehicle vehicle, int amountOfPersons, double volumeOfCargo, double weightOfCargo, decimal priceOfRide, decimal startingPrice, int kilometers, DateTime startTime, DateTime endTime)
         {
             Ride r = new Ride(vehicle, false, amountOfPersons, volumeOfCargo, weightOfCargo, priceOfRide, startingPrice, kilometers, startTime, endTime);
+            allRides.Add(r);
         }
 
         //VEHICLES
@@ -111,7 +140,32 @@ namespace TransportationHub_Assignment
             }
         }
 
+        //GETS AN AVAILABLE VEHICLE TO RESERVE A RIDE
+        public Vehicle GetAvailableVehicle(int ind, int amountOfPassenger, double volumeOfCargo, double weightOfCargo)
+        {
+            if(ind == 0)
+            {
+                foreach(Vehicle v in allVehicles)
+                {
+                    if ((v is Car && v.Available == true && ((Car)v).MaxPassenger >= amountOfPassenger) || v is Van && v.Available == true && ((Van)v).MaxPassenger >= amountOfPassenger)
+                    {
+                        return v;
+                    }
+                }
+            }
+            else
+            {
+                foreach(Vehicle v in allVehicles)
+                {
+                    if ((v is Truck && v.Available == true && ((Truck)v).MaxVolume >= volumeOfCargo) && ((Truck)v).MaxWeight >= weightOfCargo || v is Van && v.Available == true && ((Van)v).MaxVolume >= volumeOfCargo && ((Van)v).MaxWeight >= weightOfCargo)
+                    {
+                        return v;
+                    }
+                }
+            }
 
+            return null;
+        }
         
     }
 }
