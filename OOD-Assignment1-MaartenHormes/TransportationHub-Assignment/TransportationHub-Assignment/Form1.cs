@@ -161,6 +161,10 @@ namespace TransportationHub_Assignment
             {
                 MessageBox.Show(lpEx.Message);
             }
+            catch (NoVehicleTypeSelectedException nvtsEx)
+            {
+                MessageBox.Show(nvtsEx.Message);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -339,21 +343,28 @@ namespace TransportationHub_Assignment
             {
                 weightOfCargo = Convert.ToDouble(tbxWeightOfCargo.Text);
             }
-            int ind = 0;
-            DateTime? endTime = dtpEnd.Value;
+
+            bool forPassengers = true;
             if (rbtnCargo.Checked)
             {
-                ind = 1;
+                forPassengers = false;
             }
 
+            DateTime? endTime = dtpEnd.Value;
             if (rbtnAutomatictime.Checked)
             {
                 dtpStart.Value = DateTime.Now;
                 endTime = null;
             }
+            
+            if (endTime < dtpStart.Value)
+            {
+                MessageBox.Show("End time must be after start date");
+                return;
+            }
             try
             {
-                Vehicle v = TH.GetAvailableVehicle(ind, amountOfPassenger, volumeOfCargo, weightOfCargo);
+                Vehicle v = TH.GetAvailableVehicle(forPassengers, amountOfPassenger, volumeOfCargo, weightOfCargo);
                 if (v == null)
                 {
                     MessageBox.Show("No available vehicle found for you reservation");
@@ -365,6 +376,7 @@ namespace TransportationHub_Assignment
                 FillVehicleListboxes();
                 ClearRideTextboxes();
             }
+            
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -392,7 +404,7 @@ namespace TransportationHub_Assignment
                 double price = r.Vehicle.PricePerKM * r.Kilometers;
                 r.PriceOfRide = price;
                 MessageBox.Show($"You need to pay: {price.ToString("#.##")} Euro(s)");
-                
+
 
                 FillRideListboxes();
                 FillVehicleListboxes();

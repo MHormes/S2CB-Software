@@ -13,8 +13,6 @@ namespace TransportationHub_Assignment
         private int amountOfPersons;
         private double volumeOfCargo;
         private double weightOfCargo;
-        private DateTime startTime;
-        private DateTime? endTime;
 
         public bool Completed { get; set; }
 
@@ -47,20 +45,20 @@ namespace TransportationHub_Assignment
             PriceOfRide = priceOfRide;
             StartingPrice = startingPrice;
             Kilometers = kilometers;
-            this.startTime = startTime;
+            StartTime = startTime;
             EndTime = endTime;
         }
 
         public override string ToString()
         {
-            return $"Completed:{completed}. Start date and time: {startTime}. End date and time:{endTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice}/{PriceOfRide}";
+            return $"Completed:{completed}. Start date and time: {StartTime}. End date and time:{EndTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice}/{PriceOfRide}";
         }
 
         public int CompareTo(Ride other)
         {
             if(other.StartTime > StartTime){
                 return -1;}
-            else if(other.startTime < StartTime) { return 1; }
+            else if(other.StartTime < StartTime) { return 1; }
             else
             {
                 if(other.Kilometers > Kilometers) { return -1; }

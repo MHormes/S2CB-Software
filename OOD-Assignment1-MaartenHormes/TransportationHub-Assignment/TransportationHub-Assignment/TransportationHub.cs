@@ -138,13 +138,14 @@ namespace TransportationHub_Assignment
                 case 0: Vehicle v1 = new Car("Car", maxPassengers, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v1); break;
                 case 1: Vehicle v2 = new Van("Van", maxPassengers, maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v2); break;
                 case 2: Vehicle v3 = new Truck("Truck", maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v3); break;
+                case -1: throw new NoVehicleTypeSelectedException();
             }
         }
 
         //GETS AN AVAILABLE VEHICLE TO RESERVE A RIDE
-        public Vehicle GetAvailableVehicle(int ind, int amountOfPassenger, double volumeOfCargo, double weightOfCargo)
+        public Vehicle GetAvailableVehicle(bool forPassengers, int amountOfPassenger, double volumeOfCargo, double weightOfCargo)
         {
-            if(ind == 0)
+            if(forPassengers == true)
             {
                 foreach(Vehicle v in allVehicles)
                 {

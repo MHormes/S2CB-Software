@@ -51,6 +51,9 @@ namespace TransportationHub_Assignment
             this.tbxKMToTravel = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lbxRidesInProgress = new System.Windows.Forms.ListBox();
+            this.pnlTime = new System.Windows.Forms.Panel();
+            this.rbtnManualTime = new System.Windows.Forms.RadioButton();
+            this.rbtnAutomatictime = new System.Windows.Forms.RadioButton();
             this.tpVehicle = new System.Windows.Forms.TabPage();
             this.btnConfirmEditVehicle = new System.Windows.Forms.Button();
             this.btnConfirmAdd = new System.Windows.Forms.Button();
@@ -81,13 +84,10 @@ namespace TransportationHub_Assignment
             this.cbTypeOfVehicle = new System.Windows.Forms.ComboBox();
             this.btnLoadAll = new System.Windows.Forms.Button();
             this.btnSaveAll = new System.Windows.Forms.Button();
-            this.rbtnAutomatictime = new System.Windows.Forms.RadioButton();
-            this.rbtnManualTime = new System.Windows.Forms.RadioButton();
-            this.pnlTime = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tpRide.SuspendLayout();
-            this.tpVehicle.SuspendLayout();
             this.pnlTime.SuspendLayout();
+            this.tpVehicle.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -304,6 +304,38 @@ namespace TransportationHub_Assignment
             this.lbxRidesInProgress.Name = "lbxRidesInProgress";
             this.lbxRidesInProgress.Size = new System.Drawing.Size(1056, 173);
             this.lbxRidesInProgress.TabIndex = 0;
+            // 
+            // pnlTime
+            // 
+            this.pnlTime.Controls.Add(this.rbtnManualTime);
+            this.pnlTime.Controls.Add(this.rbtnAutomatictime);
+            this.pnlTime.Location = new System.Drawing.Point(283, 4);
+            this.pnlTime.Name = "pnlTime";
+            this.pnlTime.Size = new System.Drawing.Size(267, 44);
+            this.pnlTime.TabIndex = 22;
+            // 
+            // rbtnManualTime
+            // 
+            this.rbtnManualTime.AutoSize = true;
+            this.rbtnManualTime.Location = new System.Drawing.Point(14, 14);
+            this.rbtnManualTime.Name = "rbtnManualTime";
+            this.rbtnManualTime.Size = new System.Drawing.Size(86, 17);
+            this.rbtnManualTime.TabIndex = 20;
+            this.rbtnManualTime.TabStop = true;
+            this.rbtnManualTime.Text = "Manual Time";
+            this.rbtnManualTime.UseVisualStyleBackColor = true;
+            this.rbtnManualTime.CheckedChanged += new System.EventHandler(this.rbtnManualTime_CheckedChanged);
+            // 
+            // rbtnAutomatictime
+            // 
+            this.rbtnAutomatictime.AutoSize = true;
+            this.rbtnAutomatictime.Location = new System.Drawing.Point(127, 14);
+            this.rbtnAutomatictime.Name = "rbtnAutomatictime";
+            this.rbtnAutomatictime.Size = new System.Drawing.Size(98, 17);
+            this.rbtnAutomatictime.TabIndex = 21;
+            this.rbtnAutomatictime.TabStop = true;
+            this.rbtnAutomatictime.Text = "Automatic Time";
+            this.rbtnAutomatictime.UseVisualStyleBackColor = true;
             // 
             // tpVehicle
             // 
@@ -579,7 +611,7 @@ namespace TransportationHub_Assignment
             // 
             // btnLoadAll
             // 
-            this.btnLoadAll.Location = new System.Drawing.Point(381, 645);
+            this.btnLoadAll.Location = new System.Drawing.Point(693, 645);
             this.btnLoadAll.Name = "btnLoadAll";
             this.btnLoadAll.Size = new System.Drawing.Size(396, 70);
             this.btnLoadAll.TabIndex = 29;
@@ -589,45 +621,13 @@ namespace TransportationHub_Assignment
             // 
             // btnSaveAll
             // 
-            this.btnSaveAll.Location = new System.Drawing.Point(23, 645);
+            this.btnSaveAll.Location = new System.Drawing.Point(13, 645);
             this.btnSaveAll.Name = "btnSaveAll";
             this.btnSaveAll.Size = new System.Drawing.Size(322, 70);
             this.btnSaveAll.TabIndex = 28;
             this.btnSaveAll.Text = "Save all ";
             this.btnSaveAll.UseVisualStyleBackColor = true;
             this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
-            // 
-            // rbtnAutomatictime
-            // 
-            this.rbtnAutomatictime.AutoSize = true;
-            this.rbtnAutomatictime.Location = new System.Drawing.Point(127, 14);
-            this.rbtnAutomatictime.Name = "rbtnAutomatictime";
-            this.rbtnAutomatictime.Size = new System.Drawing.Size(98, 17);
-            this.rbtnAutomatictime.TabIndex = 21;
-            this.rbtnAutomatictime.TabStop = true;
-            this.rbtnAutomatictime.Text = "Automatic Time";
-            this.rbtnAutomatictime.UseVisualStyleBackColor = true;
-            // 
-            // rbtnManualTime
-            // 
-            this.rbtnManualTime.AutoSize = true;
-            this.rbtnManualTime.Location = new System.Drawing.Point(14, 14);
-            this.rbtnManualTime.Name = "rbtnManualTime";
-            this.rbtnManualTime.Size = new System.Drawing.Size(86, 17);
-            this.rbtnManualTime.TabIndex = 20;
-            this.rbtnManualTime.TabStop = true;
-            this.rbtnManualTime.Text = "Manual Time";
-            this.rbtnManualTime.UseVisualStyleBackColor = true;
-            this.rbtnManualTime.CheckedChanged += new System.EventHandler(this.rbtnManualTime_CheckedChanged);
-            // 
-            // pnlTime
-            // 
-            this.pnlTime.Controls.Add(this.rbtnManualTime);
-            this.pnlTime.Controls.Add(this.rbtnAutomatictime);
-            this.pnlTime.Location = new System.Drawing.Point(283, 4);
-            this.pnlTime.Name = "pnlTime";
-            this.pnlTime.Size = new System.Drawing.Size(267, 44);
-            this.pnlTime.TabIndex = 22;
             // 
             // Form1
             // 
@@ -642,10 +642,10 @@ namespace TransportationHub_Assignment
             this.tabControl1.ResumeLayout(false);
             this.tpRide.ResumeLayout(false);
             this.tpRide.PerformLayout();
-            this.tpVehicle.ResumeLayout(false);
-            this.tpVehicle.PerformLayout();
             this.pnlTime.ResumeLayout(false);
             this.pnlTime.PerformLayout();
+            this.tpVehicle.ResumeLayout(false);
+            this.tpVehicle.PerformLayout();
             this.ResumeLayout(false);
 
         }
