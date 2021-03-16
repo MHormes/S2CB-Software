@@ -14,7 +14,7 @@ namespace TransportationHub_Assignment
     public partial class Form1 : Form
     {
         TransportationHub TH;
-        decimal startingPrice;
+        double startingPrice;
         public Form1()
         {
             TH = new TransportationHub("Borent");
@@ -22,14 +22,18 @@ namespace TransportationHub_Assignment
             FillVehicleListboxes();
             FillRideListboxes();
             //start price for any ride can be adjusted here
-            startingPrice = 10.50m;
+            startingPrice = 10.50;
             lblStartingPrice.Text = $"Starting price of any ride: {startingPrice}";
-            
+
             //STYLE DATETIMEPICKERS IN RIGHT FORMAT
             dtpStart.Format = DateTimePickerFormat.Custom;
             dtpStart.CustomFormat = "dd/MM/yyyy HH:mm";
             dtpEnd.Format = DateTimePickerFormat.Custom;
             dtpEnd.CustomFormat = "dd/MM/yyyy HH:mm";
+
+            //PRESELECT RADIOBUTTONS
+            rbtnManualTime.Checked = true;
+            rbtnPassengers.Checked = true;
         }
 
 
@@ -257,7 +261,7 @@ namespace TransportationHub_Assignment
             {
                 MessageBox.Show(ex.Message);
             }
-            finally {  }
+            finally { }
 
         }
 
@@ -309,39 +313,53 @@ namespace TransportationHub_Assignment
             tbxVolumeOfCargo.Enabled = !rbtnPassengers.Checked;
             tbxWeightOfCargo.Enabled = !rbtnPassengers.Checked;
         }
-        
+
+        //CONTROL TIMEPICKERS ENABLE BASED ON RADIOBUTTON CHECK
+        private void rbtnManualTime_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpStart.Enabled = rbtnManualTime.Checked;
+            dtpEnd.Enabled = !rbtnAutomatictime.Checked;
+        }
+
         //RESERVE RIDE AND ADD TO LISTBOX
         private void btnReserveRide_Click(object sender, EventArgs e)
         {
             int amountOfPassenger = 0;
-            if(tbxAmountOfPassengers.Text != "")
+            if (tbxAmountOfPassengers.Text != "")
             {
                 amountOfPassenger = Convert.ToInt32(tbxAmountOfPassengers.Text);
             }
             double volumeOfCargo = 0;
-            if(tbxVolumeOfCargo.Text != "")
+            if (tbxVolumeOfCargo.Text != "")
             {
                 volumeOfCargo = Convert.ToDouble(tbxVolumeOfCargo.Text);
             }
             double weightOfCargo = 0;
-            if(tbxWeightOfCargo.Text != "")
+            if (tbxWeightOfCargo.Text != "")
             {
                 weightOfCargo = Convert.ToDouble(tbxWeightOfCargo.Text);
             }
-            int ind = 1;
-            if (rbtnPassengers.Checked)
+            int ind = 0;
+            DateTime? endTime = dtpEnd.Value;
+            if (rbtnCargo.Checked)
             {
-                ind = 0;
+                ind = 1;
+            }
+
+            if (rbtnAutomatictime.Checked)
+            {
+                dtpStart.Value = DateTime.Now;
+                endTime = null;
             }
             try
             {
                 Vehicle v = TH.GetAvailableVehicle(ind, amountOfPassenger, volumeOfCargo, weightOfCargo);
-                if(v == null)
+                if (v == null)
                 {
                     MessageBox.Show("No available vehicle found for you reservation");
                     return;
                 }
-                TH.ReserveRide(v, amountOfPassenger, volumeOfCargo, weightOfCargo, 0, startingPrice, Convert.ToInt32(tbxKMToTravel.Text), dtpStart.Value, dtpEnd.Value);
+                TH.ReserveRide(v, amountOfPassenger, volumeOfCargo, weightOfCargo, 0, startingPrice, Convert.ToInt32(tbxKMToTravel.Text), dtpStart.Value, endTime);
                 v.Available = false;
                 FillRideListboxes();
                 FillVehicleListboxes();
@@ -352,6 +370,39 @@ namespace TransportationHub_Assignment
                 MessageBox.Show(ex.Message);
             }
         }
+
+        //FINISH A RIDE AND GET A MESSAGE ABOUT THE TOTAL PRICE
+        private void btnFinishRide_Click(object sender, EventArgs e)
+        {
+            if (lbxRidesInProgress.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a ride that had not yet been completed");
+                return;
+            }
+            try
+            {
+                Ride r = (Ride)lbxRidesInProgress.SelectedItem;
+
+                if (r.EndTime == null)
+                {
+                    r.EndTime = DateTime.Now;
+                }
+                r.Completed = true;
+                r.Vehicle.Available = true; r.Vehicle.TotalKM += r.Kilometers; r.Vehicle.ConsumedFuel += r.Kilometers * Convert.ToDecimal(r.Vehicle.GasPerKM);
+                double price = r.Vehicle.PricePerKM * r.Kilometers;
+                r.PriceOfRide = price;
+                MessageBox.Show($"You need to pay: {price.ToString("#.##")} Euro(s)");
+                
+
+                FillRideListboxes();
+                FillVehicleListboxes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
 
         //GENERAL
 
@@ -368,7 +419,7 @@ namespace TransportationHub_Assignment
             {
                 MessageBox.Show(TH.SaveAllRides().Message);
             }
-            
+
         }
 
         //LOAD ALL OBJECTS
@@ -383,14 +434,14 @@ namespace TransportationHub_Assignment
 
             //load rides
             if (TH.LoadAllRides() != null)
-            {  
-                MessageBox.Show(TH.LoadAllRides().Message);  
+            {
+                MessageBox.Show(TH.LoadAllRides().Message);
             }
             FillRideListboxes();
 
 
         }
 
-        
+
     }
 }

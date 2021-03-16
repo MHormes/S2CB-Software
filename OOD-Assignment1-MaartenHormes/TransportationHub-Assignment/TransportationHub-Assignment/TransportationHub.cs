@@ -71,7 +71,7 @@ namespace TransportationHub_Assignment
         }
 
         //RESERVE RIDE
-        public void ReserveRide(Vehicle vehicle, int amountOfPersons, double volumeOfCargo, double weightOfCargo, decimal priceOfRide, decimal startingPrice, int kilometers, DateTime startTime, DateTime endTime)
+        public void ReserveRide(Vehicle vehicle, int amountOfPersons, double volumeOfCargo, double weightOfCargo, double priceOfRide, double startingPrice, int kilometers, DateTime startTime, DateTime? endTime)
         {
             Ride r = new Ride(vehicle, false, amountOfPersons, volumeOfCargo, weightOfCargo, priceOfRide, startingPrice, kilometers, startTime, endTime);
             allRides.Add(r);
@@ -131,12 +131,13 @@ namespace TransportationHub_Assignment
         //ADDS VEHICLE TO THE LIST OF VEHICLES
         public void AddVehicle(int ind, int maxPassengers, double maxWeight, double maxVolume, string makeAndModel, string licensePlate, double gasPerKM)
         {
+            double gasPrice = 1.65;
             //SWITCH TO ADD THE CORRECT TYPE OF VEHICLE
             switch (ind)
             {
-                case 0: Vehicle v1 = new Car("Car", maxPassengers, makeAndModel, licensePlate, gasPerKM, 100 / gasPerKM, 0, 0); allVehicles.Add(v1); break;
-                case 1: Vehicle v2 = new Van("Van", maxPassengers, maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, 100 / gasPerKM, 0, 0); allVehicles.Add(v2); break;
-                case 2: Vehicle v3 = new Truck("Truck", maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, 100 / gasPerKM, 0, 0); allVehicles.Add(v3); break;
+                case 0: Vehicle v1 = new Car("Car", maxPassengers, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v1); break;
+                case 1: Vehicle v2 = new Van("Van", maxPassengers, maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v2); break;
+                case 2: Vehicle v3 = new Truck("Truck", maxWeight, maxVolume, makeAndModel, licensePlate, gasPerKM, gasPrice * gasPerKM, 0, 0); allVehicles.Add(v3); break;
             }
         }
 

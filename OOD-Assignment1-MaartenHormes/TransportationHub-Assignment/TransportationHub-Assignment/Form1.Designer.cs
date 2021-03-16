@@ -31,6 +31,26 @@ namespace TransportationHub_Assignment
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpRide = new System.Windows.Forms.TabPage();
+            this.btnFinishRide = new System.Windows.Forms.Button();
+            this.lblStartingPrice = new System.Windows.Forms.Label();
+            this.btnClearRides = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.btnReserveRide = new System.Windows.Forms.Button();
+            this.tbxVolumeOfCargo = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.tbxWeightOfCargo = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.tbxAmountOfPassengers = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.rbtnCargo = new System.Windows.Forms.RadioButton();
+            this.rbtnPassengers = new System.Windows.Forms.RadioButton();
+            this.lbxRidesCompleted = new System.Windows.Forms.ListBox();
+            this.tbxKMToTravel = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lbxRidesInProgress = new System.Windows.Forms.ListBox();
             this.tpVehicle = new System.Windows.Forms.TabPage();
             this.btnConfirmEditVehicle = new System.Windows.Forms.Button();
             this.btnConfirmAdd = new System.Windows.Forms.Button();
@@ -61,28 +81,13 @@ namespace TransportationHub_Assignment
             this.cbTypeOfVehicle = new System.Windows.Forms.ComboBox();
             this.btnLoadAll = new System.Windows.Forms.Button();
             this.btnSaveAll = new System.Windows.Forms.Button();
-            this.lbxRidesInProgress = new System.Windows.Forms.ListBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbxKMToTravel = new System.Windows.Forms.TextBox();
-            this.lbxRidesCompleted = new System.Windows.Forms.ListBox();
-            this.rbtnPassengers = new System.Windows.Forms.RadioButton();
-            this.rbtnCargo = new System.Windows.Forms.RadioButton();
-            this.tbxAmountOfPassengers = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.tbxWeightOfCargo = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.tbxVolumeOfCargo = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.btnReserveRide = new System.Windows.Forms.Button();
-            this.dtpStart = new System.Windows.Forms.DateTimePicker();
-            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btnClearRides = new System.Windows.Forms.Button();
-            this.lblStartingPrice = new System.Windows.Forms.Label();
+            this.rbtnAutomatictime = new System.Windows.Forms.RadioButton();
+            this.rbtnManualTime = new System.Windows.Forms.RadioButton();
+            this.pnlTime = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tpRide.SuspendLayout();
             this.tpVehicle.SuspendLayout();
+            this.pnlTime.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -97,6 +102,7 @@ namespace TransportationHub_Assignment
             // 
             // tpRide
             // 
+            this.tpRide.Controls.Add(this.btnFinishRide);
             this.tpRide.Controls.Add(this.lblStartingPrice);
             this.tpRide.Controls.Add(this.btnClearRides);
             this.tpRide.Controls.Add(this.label15);
@@ -116,6 +122,7 @@ namespace TransportationHub_Assignment
             this.tpRide.Controls.Add(this.tbxKMToTravel);
             this.tpRide.Controls.Add(this.label8);
             this.tpRide.Controls.Add(this.lbxRidesInProgress);
+            this.tpRide.Controls.Add(this.pnlTime);
             this.tpRide.Location = new System.Drawing.Point(4, 22);
             this.tpRide.Name = "tpRide";
             this.tpRide.Padding = new System.Windows.Forms.Padding(3);
@@ -123,6 +130,180 @@ namespace TransportationHub_Assignment
             this.tpRide.TabIndex = 0;
             this.tpRide.Text = "Rides";
             this.tpRide.UseVisualStyleBackColor = true;
+            // 
+            // btnFinishRide
+            // 
+            this.btnFinishRide.Location = new System.Drawing.Point(465, 184);
+            this.btnFinishRide.Name = "btnFinishRide";
+            this.btnFinishRide.Size = new System.Drawing.Size(114, 52);
+            this.btnFinishRide.TabIndex = 19;
+            this.btnFinishRide.Text = "Finish selected ride";
+            this.btnFinishRide.UseVisualStyleBackColor = true;
+            this.btnFinishRide.Click += new System.EventHandler(this.btnFinishRide_Click);
+            // 
+            // lblStartingPrice
+            // 
+            this.lblStartingPrice.AutoSize = true;
+            this.lblStartingPrice.Location = new System.Drawing.Point(641, 7);
+            this.lblStartingPrice.Name = "lblStartingPrice";
+            this.lblStartingPrice.Size = new System.Drawing.Size(41, 13);
+            this.lblStartingPrice.TabIndex = 18;
+            this.lblStartingPrice.Text = "label16";
+            // 
+            // btnClearRides
+            // 
+            this.btnClearRides.Location = new System.Drawing.Point(948, 184);
+            this.btnClearRides.Name = "btnClearRides";
+            this.btnClearRides.Size = new System.Drawing.Size(114, 52);
+            this.btnClearRides.TabIndex = 17;
+            this.btnClearRides.Text = "Clear all input";
+            this.btnClearRides.UseVisualStyleBackColor = true;
+            this.btnClearRides.Click += new System.EventHandler(this.btnClearRides_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(280, 38);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(83, 13);
+            this.label15.TabIndex = 16;
+            this.label15.Text = "Start Date/Time";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(280, 88);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(80, 13);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "End Date/Time";
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Location = new System.Drawing.Point(283, 104);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
+            this.dtpEnd.TabIndex = 14;
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Location = new System.Drawing.Point(283, 54);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(200, 20);
+            this.dtpStart.TabIndex = 13;
+            // 
+            // btnReserveRide
+            // 
+            this.btnReserveRide.Location = new System.Drawing.Point(6, 184);
+            this.btnReserveRide.Name = "btnReserveRide";
+            this.btnReserveRide.Size = new System.Drawing.Size(114, 52);
+            this.btnReserveRide.TabIndex = 12;
+            this.btnReserveRide.Text = "Make reservation for a ride";
+            this.btnReserveRide.UseVisualStyleBackColor = true;
+            this.btnReserveRide.Click += new System.EventHandler(this.btnReserveRide_Click);
+            // 
+            // tbxVolumeOfCargo
+            // 
+            this.tbxVolumeOfCargo.Location = new System.Drawing.Point(148, 105);
+            this.tbxVolumeOfCargo.Name = "tbxVolumeOfCargo";
+            this.tbxVolumeOfCargo.Size = new System.Drawing.Size(100, 20);
+            this.tbxVolumeOfCargo.TabIndex = 11;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(145, 88);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(84, 13);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Volume of cargo";
+            // 
+            // tbxWeightOfCargo
+            // 
+            this.tbxWeightOfCargo.Location = new System.Drawing.Point(148, 54);
+            this.tbxWeightOfCargo.Name = "tbxWeightOfCargo";
+            this.tbxWeightOfCargo.Size = new System.Drawing.Size(100, 20);
+            this.tbxWeightOfCargo.TabIndex = 9;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(145, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(83, 13);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "Weight of cargo";
+            // 
+            // tbxAmountOfPassengers
+            // 
+            this.tbxAmountOfPassengers.Location = new System.Drawing.Point(9, 105);
+            this.tbxAmountOfPassengers.Name = "tbxAmountOfPassengers";
+            this.tbxAmountOfPassengers.Size = new System.Drawing.Size(100, 20);
+            this.tbxAmountOfPassengers.TabIndex = 7;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 88);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(100, 13);
+            this.label11.TabIndex = 6;
+            this.label11.Text = "Amount of travellers";
+            // 
+            // rbtnCargo
+            // 
+            this.rbtnCargo.AutoSize = true;
+            this.rbtnCargo.Location = new System.Drawing.Point(148, 7);
+            this.rbtnCargo.Name = "rbtnCargo";
+            this.rbtnCargo.Size = new System.Drawing.Size(128, 17);
+            this.rbtnCargo.TabIndex = 5;
+            this.rbtnCargo.TabStop = true;
+            this.rbtnCargo.Text = "For transporting cargo";
+            this.rbtnCargo.UseVisualStyleBackColor = true;
+            // 
+            // rbtnPassengers
+            // 
+            this.rbtnPassengers.AutoSize = true;
+            this.rbtnPassengers.Location = new System.Drawing.Point(9, 7);
+            this.rbtnPassengers.Name = "rbtnPassengers";
+            this.rbtnPassengers.Size = new System.Drawing.Size(133, 17);
+            this.rbtnPassengers.TabIndex = 4;
+            this.rbtnPassengers.TabStop = true;
+            this.rbtnPassengers.Text = "For transporting people";
+            this.rbtnPassengers.UseVisualStyleBackColor = true;
+            this.rbtnPassengers.CheckedChanged += new System.EventHandler(this.rbtnPassengers_CheckedChanged);
+            // 
+            // lbxRidesCompleted
+            // 
+            this.lbxRidesCompleted.FormattingEnabled = true;
+            this.lbxRidesCompleted.Location = new System.Drawing.Point(6, 421);
+            this.lbxRidesCompleted.Name = "lbxRidesCompleted";
+            this.lbxRidesCompleted.Size = new System.Drawing.Size(1056, 173);
+            this.lbxRidesCompleted.TabIndex = 3;
+            // 
+            // tbxKMToTravel
+            // 
+            this.tbxKMToTravel.Location = new System.Drawing.Point(9, 54);
+            this.tbxKMToTravel.Name = "tbxKMToTravel";
+            this.tbxKMToTravel.Size = new System.Drawing.Size(100, 20);
+            this.tbxKMToTravel.TabIndex = 2;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 37);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(64, 13);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "KM to travel";
+            // 
+            // lbxRidesInProgress
+            // 
+            this.lbxRidesInProgress.FormattingEnabled = true;
+            this.lbxRidesInProgress.Location = new System.Drawing.Point(6, 242);
+            this.lbxRidesInProgress.Name = "lbxRidesInProgress";
+            this.lbxRidesInProgress.Size = new System.Drawing.Size(1056, 173);
+            this.lbxRidesInProgress.TabIndex = 0;
             // 
             // tpVehicle
             // 
@@ -416,169 +597,37 @@ namespace TransportationHub_Assignment
             this.btnSaveAll.UseVisualStyleBackColor = true;
             this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
             // 
-            // lbxRidesInProgress
+            // rbtnAutomatictime
             // 
-            this.lbxRidesInProgress.FormattingEnabled = true;
-            this.lbxRidesInProgress.Location = new System.Drawing.Point(6, 242);
-            this.lbxRidesInProgress.Name = "lbxRidesInProgress";
-            this.lbxRidesInProgress.Size = new System.Drawing.Size(1056, 173);
-            this.lbxRidesInProgress.TabIndex = 0;
+            this.rbtnAutomatictime.AutoSize = true;
+            this.rbtnAutomatictime.Location = new System.Drawing.Point(127, 14);
+            this.rbtnAutomatictime.Name = "rbtnAutomatictime";
+            this.rbtnAutomatictime.Size = new System.Drawing.Size(98, 17);
+            this.rbtnAutomatictime.TabIndex = 21;
+            this.rbtnAutomatictime.TabStop = true;
+            this.rbtnAutomatictime.Text = "Automatic Time";
+            this.rbtnAutomatictime.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // rbtnManualTime
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 37);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 13);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "KM to travel";
+            this.rbtnManualTime.AutoSize = true;
+            this.rbtnManualTime.Location = new System.Drawing.Point(14, 14);
+            this.rbtnManualTime.Name = "rbtnManualTime";
+            this.rbtnManualTime.Size = new System.Drawing.Size(86, 17);
+            this.rbtnManualTime.TabIndex = 20;
+            this.rbtnManualTime.TabStop = true;
+            this.rbtnManualTime.Text = "Manual Time";
+            this.rbtnManualTime.UseVisualStyleBackColor = true;
+            this.rbtnManualTime.CheckedChanged += new System.EventHandler(this.rbtnManualTime_CheckedChanged);
             // 
-            // tbxKMToTravel
+            // pnlTime
             // 
-            this.tbxKMToTravel.Location = new System.Drawing.Point(9, 54);
-            this.tbxKMToTravel.Name = "tbxKMToTravel";
-            this.tbxKMToTravel.Size = new System.Drawing.Size(100, 20);
-            this.tbxKMToTravel.TabIndex = 2;
-            // 
-            // lbxRidesCompleted
-            // 
-            this.lbxRidesCompleted.FormattingEnabled = true;
-            this.lbxRidesCompleted.Location = new System.Drawing.Point(6, 421);
-            this.lbxRidesCompleted.Name = "lbxRidesCompleted";
-            this.lbxRidesCompleted.Size = new System.Drawing.Size(1056, 173);
-            this.lbxRidesCompleted.TabIndex = 3;
-            // 
-            // rbtnPassengers
-            // 
-            this.rbtnPassengers.AutoSize = true;
-            this.rbtnPassengers.Location = new System.Drawing.Point(9, 7);
-            this.rbtnPassengers.Name = "rbtnPassengers";
-            this.rbtnPassengers.Size = new System.Drawing.Size(133, 17);
-            this.rbtnPassengers.TabIndex = 4;
-            this.rbtnPassengers.TabStop = true;
-            this.rbtnPassengers.Text = "For transporting people";
-            this.rbtnPassengers.UseVisualStyleBackColor = true;
-            this.rbtnPassengers.CheckedChanged += new System.EventHandler(this.rbtnPassengers_CheckedChanged);
-            // 
-            // rbtnCargo
-            // 
-            this.rbtnCargo.AutoSize = true;
-            this.rbtnCargo.Location = new System.Drawing.Point(148, 7);
-            this.rbtnCargo.Name = "rbtnCargo";
-            this.rbtnCargo.Size = new System.Drawing.Size(128, 17);
-            this.rbtnCargo.TabIndex = 5;
-            this.rbtnCargo.TabStop = true;
-            this.rbtnCargo.Text = "For transporting cargo";
-            this.rbtnCargo.UseVisualStyleBackColor = true;
-            // 
-            // tbxAmountOfPassengers
-            // 
-            this.tbxAmountOfPassengers.Location = new System.Drawing.Point(9, 105);
-            this.tbxAmountOfPassengers.Name = "tbxAmountOfPassengers";
-            this.tbxAmountOfPassengers.Size = new System.Drawing.Size(100, 20);
-            this.tbxAmountOfPassengers.TabIndex = 7;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 88);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(100, 13);
-            this.label11.TabIndex = 6;
-            this.label11.Text = "Amount of travellers";
-            // 
-            // tbxWeightOfCargo
-            // 
-            this.tbxWeightOfCargo.Location = new System.Drawing.Point(148, 54);
-            this.tbxWeightOfCargo.Name = "tbxWeightOfCargo";
-            this.tbxWeightOfCargo.Size = new System.Drawing.Size(100, 20);
-            this.tbxWeightOfCargo.TabIndex = 9;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(145, 37);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(83, 13);
-            this.label12.TabIndex = 8;
-            this.label12.Text = "Weight of cargo";
-            // 
-            // tbxVolumeOfCargo
-            // 
-            this.tbxVolumeOfCargo.Location = new System.Drawing.Point(148, 105);
-            this.tbxVolumeOfCargo.Name = "tbxVolumeOfCargo";
-            this.tbxVolumeOfCargo.Size = new System.Drawing.Size(100, 20);
-            this.tbxVolumeOfCargo.TabIndex = 11;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(145, 88);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 13);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Volume of cargo";
-            // 
-            // btnReserveRide
-            // 
-            this.btnReserveRide.Location = new System.Drawing.Point(6, 184);
-            this.btnReserveRide.Name = "btnReserveRide";
-            this.btnReserveRide.Size = new System.Drawing.Size(114, 52);
-            this.btnReserveRide.TabIndex = 12;
-            this.btnReserveRide.Text = "Make reservation for a ride";
-            this.btnReserveRide.UseVisualStyleBackColor = true;
-            this.btnReserveRide.Click += new System.EventHandler(this.btnReserveRide_Click);
-            // 
-            // dtpStart
-            // 
-            this.dtpStart.Location = new System.Drawing.Point(283, 54);
-            this.dtpStart.Name = "dtpStart";
-            this.dtpStart.Size = new System.Drawing.Size(200, 20);
-            this.dtpStart.TabIndex = 13;
-            // 
-            // dtpEnd
-            // 
-            this.dtpEnd.Location = new System.Drawing.Point(283, 104);
-            this.dtpEnd.Name = "dtpEnd";
-            this.dtpEnd.Size = new System.Drawing.Size(200, 20);
-            this.dtpEnd.TabIndex = 14;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(280, 88);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 13);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "End Date/Time";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(280, 38);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(83, 13);
-            this.label15.TabIndex = 16;
-            this.label15.Text = "Start Date/Time";
-            // 
-            // btnClearRides
-            // 
-            this.btnClearRides.Location = new System.Drawing.Point(948, 184);
-            this.btnClearRides.Name = "btnClearRides";
-            this.btnClearRides.Size = new System.Drawing.Size(114, 52);
-            this.btnClearRides.TabIndex = 17;
-            this.btnClearRides.Text = "Clear all input";
-            this.btnClearRides.UseVisualStyleBackColor = true;
-            this.btnClearRides.Click += new System.EventHandler(this.btnClearRides_Click);
-            // 
-            // lblStartingPrice
-            // 
-            this.lblStartingPrice.AutoSize = true;
-            this.lblStartingPrice.Location = new System.Drawing.Point(641, 7);
-            this.lblStartingPrice.Name = "lblStartingPrice";
-            this.lblStartingPrice.Size = new System.Drawing.Size(41, 13);
-            this.lblStartingPrice.TabIndex = 18;
-            this.lblStartingPrice.Text = "label16";
+            this.pnlTime.Controls.Add(this.rbtnManualTime);
+            this.pnlTime.Controls.Add(this.rbtnAutomatictime);
+            this.pnlTime.Location = new System.Drawing.Point(283, 4);
+            this.pnlTime.Name = "pnlTime";
+            this.pnlTime.Size = new System.Drawing.Size(267, 44);
+            this.pnlTime.TabIndex = 22;
             // 
             // Form1
             // 
@@ -595,6 +644,8 @@ namespace TransportationHub_Assignment
             this.tpRide.PerformLayout();
             this.tpVehicle.ResumeLayout(false);
             this.tpVehicle.PerformLayout();
+            this.pnlTime.ResumeLayout(false);
+            this.pnlTime.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -652,6 +703,10 @@ namespace TransportationHub_Assignment
         private System.Windows.Forms.DateTimePicker dtpStart;
         private System.Windows.Forms.Button btnClearRides;
         private System.Windows.Forms.Label lblStartingPrice;
+        private System.Windows.Forms.Button btnFinishRide;
+        private System.Windows.Forms.Panel pnlTime;
+        private System.Windows.Forms.RadioButton rbtnManualTime;
+        private System.Windows.Forms.RadioButton rbtnAutomatictime;
     }
 }
 
