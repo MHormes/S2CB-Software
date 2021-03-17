@@ -9,7 +9,6 @@ namespace TransportationHub_Assignment
     [Serializable]
     public class Ride : IComparable<Ride>
     {
-        private bool completed;
         private int amountOfPersons;
         private double volumeOfCargo;
         private double weightOfCargo;
@@ -38,7 +37,7 @@ namespace TransportationHub_Assignment
         public Ride(Vehicle vehicle, bool completed, int amountOfPersons, double volumeOfCargo, double weightOfCargo, double priceOfRide, double startingPrice, int kilometers, DateTime startTime, DateTime? endTime)
         {
             Vehicle = vehicle;
-            this.completed = completed;
+            Completed = completed;
             this.amountOfPersons = amountOfPersons;
             this.volumeOfCargo = volumeOfCargo;
             this.weightOfCargo = weightOfCargo;
@@ -51,7 +50,7 @@ namespace TransportationHub_Assignment
 
         public override string ToString()
         {
-            return $"Completed:{completed}. Start date and time: {StartTime}. End date and time:{EndTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice}/{PriceOfRide}";
+            return $"Completed:{Completed}. Start date and time: {StartTime}. End date and time:{EndTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice}/{PriceOfRide}";
         }
 
         public int CompareTo(Ride other)

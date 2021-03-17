@@ -21,6 +21,8 @@ namespace TransportationHub_Assignment
             InitializeComponent();
             FillVehicleListboxes();
             FillRideListboxes();
+            //Prepare add vehicle will be called when first launching the app
+            PrepareAddVehicle();
             //start price for any ride can be adjusted here
             startingPrice = 10.50;
             lblStartingPrice.Text = $"Starting price of any ride: {startingPrice}";
@@ -75,6 +77,17 @@ namespace TransportationHub_Assignment
             cbTypeOfVehicle.SelectedIndex = -1;
         }
 
+        //PREPARE TEXTBOXES FOR ADDING
+        public void PrepareAddVehicle()
+        {
+            //enable/disable correct buttons and textfields
+            btnConfirmAdd.Visible = true;
+            btnAddVehicle.Visible = false;
+            tbxTotalConsumedFuel.Enabled = false;
+            tbxTotalKM.Enabled = false;
+            tbxPricePerKM.Enabled = false;
+        }
+
         //CONTROLS TEXTBOX ENABLE FOR SELECTED INDEX OF Combobox vehicle type
         private void cbTypeOfVehicle_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -104,15 +117,11 @@ namespace TransportationHub_Assignment
             ClearVehicleTextBoxes();
         }
 
+        
         //PREPARE ADD VEHICLE BUTTON
         private void btnAddVehicle_Click(object sender, EventArgs e)
         {
-            //enable/disable correct buttons and textfields
-            btnConfirmAdd.Visible = true;
-            btnAddVehicle.Visible = false;
-            tbxTotalConsumedFuel.Enabled = false;
-            tbxTotalKM.Enabled = false;
-            tbxPricePerKM.Enabled = false;
+            PrepareAddVehicle();
             ClearVehicleTextBoxes();
         }
 
@@ -151,11 +160,9 @@ namespace TransportationHub_Assignment
                 TH.AddVehicle(cbTypeOfVehicle.SelectedIndex, maxPassengers, maxWeight, maxVolume, tbxMakeAndModel.Text, tbxLicensePlate.Text, Convert.ToDouble(tbxGasPerKM.Text));
                 FillVehicleListboxes();
 
-                //Disable/enable correct buttons
-                btnAddVehicle.Visible = true;
-                btnConfirmAdd.Visible = false;
+                //PREPARE TO ADD AGAIN
+                PrepareAddVehicle();
                 ClearVehicleTextBoxes();
-
             }
             catch (LicensePlateException lpEx)
             {
@@ -177,9 +184,9 @@ namespace TransportationHub_Assignment
         private void btnEditSelected_Click(object sender, EventArgs e)
         {
             //check if vehicle is selected
-            if (lbxVehiclesAvailable.SelectedIndex == -1)
+            if (lbxVehiclesAvailable.SelectedIndex == -1 || lbxVehiclesAvailable.SelectedIndex == 0)
             {
-                MessageBox.Show("Please select a vehicle to edit");
+                MessageBox.Show("Please select a available vehicle to edit");
                 return;
             }
 
@@ -189,6 +196,8 @@ namespace TransportationHub_Assignment
             tbxPricePerKM.Enabled = false;
             btnEditSelected.Visible = false;
             btnConfirmEditVehicle.Visible = true;
+            btnAddVehicle.Enabled = false;
+            btnConfirmAdd.Enabled = false;
             lbxVehiclesAvailable.Enabled = false;
 
             //Assign selected -> check what type of vehicle -> fill in textboxes with existing data
@@ -252,7 +261,10 @@ namespace TransportationHub_Assignment
                 //enable/disable correct buttons
                 btnEditSelected.Visible = true;
                 btnConfirmEditVehicle.Visible = false;
+                btnConfirmAdd.Enabled = true;
+                btnAddVehicle.Enabled = true;
                 lbxVehiclesAvailable.Enabled = true;
+                
                 FillVehicleListboxes();
                 lbxVehiclesAvailable.SelectedIndex = -1;
                 ClearVehicleTextBoxes();
@@ -359,7 +371,7 @@ namespace TransportationHub_Assignment
             
             if (endTime < dtpStart.Value)
             {
-                MessageBox.Show("End time must be after start date");
+                MessageBox.Show("End date must be after start date");
                 return;
             }
             try
@@ -404,8 +416,6 @@ namespace TransportationHub_Assignment
                 double price = r.Vehicle.PricePerKM * r.Kilometers;
                 r.PriceOfRide = price;
                 MessageBox.Show($"You need to pay: {price.ToString("#.##")} Euro(s)");
-
-
                 FillRideListboxes();
                 FillVehicleListboxes();
             }
