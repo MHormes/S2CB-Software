@@ -239,7 +239,7 @@ namespace TransportationHub_Assignment
                 v.MakeAndModel = tbxMakeAndModel.Text;
                 v.LicensePlate = tbxLicensePlate.Text;
                 v.GasPerKM = Convert.ToDouble(tbxGasPerKM.Text);
-                v.PricePerKM = 100 / Convert.ToDouble(tbxGasPerKM.Text);
+                v.PricePerKM = 1.5 * v.GasPerKM;
                 v.ConsumedFuel = (decimal)(v.TotalKM * Convert.ToDouble(tbxGasPerKM.Text));
 
                 if (v is Car)
@@ -413,7 +413,7 @@ namespace TransportationHub_Assignment
                 }
                 r.Completed = true;
                 r.Vehicle.Available = true; r.Vehicle.TotalKM += r.Kilometers; r.Vehicle.ConsumedFuel += r.Kilometers * Convert.ToDecimal(r.Vehicle.GasPerKM);
-                double price = r.Vehicle.PricePerKM * r.Kilometers;
+                double price = r.Vehicle.PricePerKM * r.Kilometers + startingPrice;
                 r.PriceOfRide = price;
                 MessageBox.Show($"You need to pay: {price.ToString("#.##")} Euro(s)");
                 FillRideListboxes();

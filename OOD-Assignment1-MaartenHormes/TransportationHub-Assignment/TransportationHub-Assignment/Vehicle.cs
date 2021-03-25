@@ -36,11 +36,16 @@ namespace TransportationHub_Assignment
             set
             {
                 //CHECK IF LICENSE PLATE IS IS CORRECT FORMAT
-                if (!Regex.IsMatch(value, @"^[0-9]{3}-[A-Z]{2}-[0-9]{1}$"))
+                if (!Regex.IsMatch(value, @"^[0-9]{3}-[A-z]{2}-[0-9]{1}$"))
                 {
                     throw new LicensePlateException(value);
                 }
-                this.licensePlate = value;
+                string start = value.Substring(0, 4);
+                string middle = value.Substring(4, 2).ToUpper();
+                string end = value.Substring(6, 2);
+
+                string correctPlate = start + middle + end;
+                this.licensePlate = correctPlate;
             }
         }
 
@@ -73,8 +78,8 @@ namespace TransportationHub_Assignment
         {
             int firstThis = Convert.ToInt32(LicensePlate.Substring(0, 3));
             int firstOther = Convert.ToInt32(other.LicensePlate.Substring(0, 3));
-            string secondThis = LicensePlate.Substring(3, 2);
-            string secondOther = other.LicensePlate.Substring(3, 2);
+            string secondThis = LicensePlate.Substring(4, 2);
+            string secondOther = other.LicensePlate.Substring(4, 2);
             if (firstOther > firstThis) { return -1; }
             else if (firstOther < firstThis) { return 1; }
             else

@@ -50,7 +50,7 @@ namespace TransportationHub_Assignment
 
         public override string ToString()
         {
-            return $"Completed:{Completed}. Start date and time: {StartTime}. End date and time:{EndTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice}/{PriceOfRide}";
+            return $"Completed:{Completed}. Start date and time: {StartTime}. End date and time:{EndTime}. Type:{Vehicle.Type}({Vehicle.LicensePlate}) Starting/Total price{StartingPrice.ToString("#.##")}/{PriceOfRide.ToString("#.##")}";
         }
 
         public int CompareTo(Ride other)
