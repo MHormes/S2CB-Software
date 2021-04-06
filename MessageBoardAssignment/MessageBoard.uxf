@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <help_text>
+// Uncomment the following line to change the fontsize and font:
+// fontsize=14
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>119</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>ChannelForm
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>182</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>TeacherForm
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>133</x>
+      <y>133</y>
+      <w>21</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>245</x>
+      <y>175</y>
+      <w>175</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>MessageBoard
+--
+- name: string
+--
++ Name {get;}: string
++ MessageBoard(name: string)
++ GetAvailableChannels(): Channel[]
++ BanParentFromBoard(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>182</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>105</x>
+      <y>287</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>LogInForm
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>133</x>
+      <y>196</y>
+      <w>21</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>175</y>
+      <w>301</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>ChannelManager
+--
+channels: List&lt;Channel&gt;
+--
++GetChannels()Channel[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>413</x>
+      <y>203</y>
+      <w>147</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Classes of the school
+m1= *</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>119</y>
+      <w>595</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Channel Displayed
+</panel_attributes>
+    <additional_attributes>710.0;80.0;710.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>511</y>
+      <w>217</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Message
+--
+- timeStamp: DateTime
+- text: string
+--
++ Message(timeStamp: DateTime, text: string)
++ ToString(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>987</x>
+      <y>476</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Contains messages
+m1= *</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;20.0;240.0;20.0;240.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1127</x>
+      <y>665</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Parent
+--
+- fullName: string
+- classOfChild: int
+--
++ ClassOfChild {get;}: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>938</x>
+      <y>665</y>
+      <w>147</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Teacher
+--
+- fullName: string
+- classTeached: int
+--
++ ClassTeached {get;}: int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>329</x>
+      <y>504</y>
+      <w>210</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>ParentManager
+--
+-parents: List&lt;Parent&gt;
+--
++FillParentsList(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>581</x>
+      <y>553</y>
+      <w>147</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>TeacherManager
+--
+- currentTeacher: Teacher
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>56</x>
+      <y>84</y>
+      <w>154</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes>UI
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>224</x>
+      <y>84</y>
+      <w>651</w>
+      <h>567</h>
+    </coordinates>
+    <panel_attributes>LogicLayer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>224</x>
+      <y>658</y>
+      <w>651</w>
+      <h>203</h>
+    </coordinates>
+    <panel_attributes>Data acces </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>273</x>
+      <y>700</y>
+      <w>252</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>ParentDBConn
+--
++GetParentsFromDB(): List&lt;Parent&gt; (Not implemented)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>399</x>
+      <y>560</y>
+      <w>21</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>665</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>Login Handler</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>406</x>
+      <y>735</y>
+      <w>756</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>1060.0;90.0;1060.0;130.0;10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>721</x>
+      <y>602</y>
+      <w>322</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>440.0;90.0;440.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>903</x>
+      <y>469</y>
+      <w>532</w>
+      <h>392</h>
+    </coordinates>
+    <panel_attributes>Models
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>336</x>
+      <y>301</y>
+      <w>21</w>
+      <h>217</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;290.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>392</x>
+      <y>301</y>
+      <w>266</w>
+      <h>266</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>360.0;360.0;360.0;240.0;10.0;240.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>315</x>
+      <y>665</y>
+      <w>637</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>890.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>147</x>
+      <y>301</y>
+      <w>119</w>
+      <h>385</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>150.0;530.0;10.0;530.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1155</x>
+      <y>511</y>
+      <w>259</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>Channel
+--
+- name: int
+- messages: List&lt;Message&gt;
+--
++ Name {get;}: int
++ Channel(name: int)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>329</y>
+      <w>427</w>
+      <h>196</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>590.0;260.0;590.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>322</y>
+      <w>301</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>MessageManager
+--
++ PostMessage(text: string, channel: int): void
++ GetMessages(channel: int): Message[]
++ GetMessages(sinceTimeStamp: DateTime, channel: int): Message[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>189</y>
+      <w>511</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>710.0;460.0;710.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
