@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{24BD7662-C52E-4C5C-9806-68E62755837B}</ProjectGuid>
+    <ProjectGuid>{98C95882-D933-496B-8504-D1F791BE39AF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>StatisticsApp</RootNamespace>
-    <AssemblyName>StatisticsApp</AssemblyName>
+    <RootNamespace>OOD_AssignmentW12_MaartenHormes</RootNamespace>
+    <AssemblyName>OOD-AssignmentW12-MaartenHormes</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -52,11 +52,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="IWorkshop.cs" />
+    <Compile Include="Models\IPerson.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Models\Teacher.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="WorkshopOnline.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -78,12 +80,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DataCollectingApp\DataCollectingApp.csproj">
-      <Project>{d3c07fc8-6e16-4484-8e60-13c68c9fc75d}</Project>
-      <Name>DataCollectingApp</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

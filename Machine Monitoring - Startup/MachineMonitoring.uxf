@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>12</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1140</x>
+      <y>204</y>
+      <w>408</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>Machine
+--
+-name: string
+-temperature:int
+-pressure:int
+--
++Machine(name: string, temperature:int, pressure:int)
++WarningTemp(): string
++WarningPress(): string
++ToString(): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>156</y>
+      <w>468</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Models</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>156</y>
+      <w>600</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>Logic
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>504</x>
+      <y>192</y>
+      <w>576</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>MachineManager
+--
+ML: MachineLogging
+machines: Machine[]
+warnings: string[]
+loggin: bool
+--
++GetWarnings(): string[]
++GetAllMachines(): Machine[]
++GetMachine(name: string): Machine
++AddMachine(name: string, temperature: string, pressure:string): Exception
++ChangeTemp(name: string): bool
++ChangePress(name: string): bool</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>192</y>
+      <w>252</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;exception&gt;&gt;
+IncorrectInputException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>204</y>
+      <w>204</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1080</x>
+      <y>288</y>
+      <w>84</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>492</x>
+      <y>504</y>
+      <w>600</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>Data</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>516</x>
+      <y>540</y>
+      <w>360</w>
+      <h>228</h>
+    </coordinates>
+    <panel_attributes>MachineLogging
+--
+log = string[]
+--
++AddWarningToLog(string warning): void
++SaveToFile(): Exception
++LoadFromFile(): Exception</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>264</y>
+      <w>252</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;exception&gt;&gt;
+ExistingNameException
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>288</y>
+      <w>204</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>108</x>
+      <y>528</y>
+      <w>252</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>MonitorForm</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>264</x>
+      <y>372</y>
+      <w>264</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>200.0;10.0;10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>444</y>
+      <w>36</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+</diagram>
