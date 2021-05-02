@@ -4,24 +4,28 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>828</x>
-      <y>252</y>
+      <x>1062</x>
+      <y>315</y>
       <w>270</w>
       <h>171</h>
     </coordinates>
     <panel_attributes>WorkshopOnline
 --
-teachers: Teacher[]
-attendees: IPerson[]
+-teachers: Teacher[]
+-attendees: IPerson[]
++URL { get; set; }: string
 --
-+AssignPassword(pcn: int): void</panel_attributes>
++AssignPassword(pcn: int): void
++GetTeachers(): Teacher[]
++GetAttendees(): IPerson[]
++ToString(): string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>810</x>
-      <y>225</y>
+      <x>1044</x>
+      <y>288</y>
       <w>603</w>
       <h>432</h>
     </coordinates>
@@ -32,9 +36,9 @@ attendees: IPerson[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>198</x>
-      <y>225</y>
-      <w>603</w>
+      <x>99</x>
+      <y>288</y>
+      <w>936</w>
       <h>432</h>
     </coordinates>
     <panel_attributes>Logic</panel_attributes>
@@ -43,30 +47,33 @@ attendees: IPerson[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>252</y>
-      <w>576</w>
-      <h>171</h>
+      <x>117</x>
+      <y>315</y>
+      <w>909</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>WorkshopManager
 --
 workshops: IWorkshop[]
 --
-+CreateNewWorkshop(name: string, description: string, maxCapacity: int, date: DateTime): Exception
++CreateNewWorkshop(inBuilding: bool, name: string, description: string, maxCapacity: int, date: DateTime, url: string, adress: string, roomNmr: string): Exception
++DeleteWorkshop(name: string): bool
++UpdateWorkshop(name: string, description: string, maxCapacity: int, date: DateTime, url: string, adress: string, roomNmr: string): Exception
 +GetWorkshop(name: string): IWorkshop
 +GetWorkshops(): IWorkshop[]
 +StartWorkshop(name: string): void
-+AssignTeacher(workshop: IWorkshop, teacher: Teacher): Exception
-+EnrolPerson(workshop: IWorkshop, attendee: Iperson): bool
-+SaveWorkshop(): void</panel_attributes>
++AssignTeacher(workshopName: string, teacherPCN: int): bool
++EnrolPerson(workshopName: string, attendeePCN: int): bool
++SaveWorkshops(): void
++ValidateUserInput(maxCapacity: string, roomNmr: string, name: string, date:DateTime): bool</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>468</y>
-      <w>504</w>
+      <x>108</x>
+      <y>531</y>
+      <w>918</w>
       <h>171</h>
     </coordinates>
     <panel_attributes>PersonManager
@@ -74,6 +81,7 @@ workshops: IWorkshop[]
 people: IPerson[]
 --
 +AddNewPerson(name: string, pcn:int, email: string): Exception
++UpdatePerson(oldName: string, newName: string, email: string): Exception
 +GetPerson(PCN: int): Iperson
 +GetPersons(): Iperson[]</panel_attributes>
     <additional_attributes/>
@@ -81,8 +89,8 @@ people: IPerson[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>909</x>
-      <y>27</y>
+      <x>1143</x>
+      <y>90</y>
       <w>369</w>
       <h>135</h>
     </coordinates>
@@ -94,30 +102,35 @@ IWorkshop
 +Date { get; set; }: DateTime
 +MaxCapacity { get; set; }: int
 +Started {get; set;}: bool
+--
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1116</x>
-      <y>252</y>
+      <x>1350</x>
+      <y>315</y>
       <w>288</w>
       <h>171</h>
     </coordinates>
     <panel_attributes>WorkshopInbuilding
 --
-teachers: Teacher[]
-attendees: IPerson[]
+-teachers: Teacher[]
+-attendees: IPerson[]
++adress { get; set; }: string
 --
-+AssignSeat(attandee: Iperson): void</panel_attributes>
++AssignSeat(attandee: Iperson): void
++GetTeachers(): Teacher[]
++GetAttendees(): IPerson[]
++ToString(): string</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1107</x>
-      <y>153</y>
+      <x>1341</x>
+      <y>216</y>
       <w>207</w>
       <h>117</h>
     </coordinates>
@@ -127,8 +140,8 @@ attendees: IPerson[]
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>927</x>
-      <y>189</y>
+      <x>1161</x>
+      <y>252</y>
       <w>207</w>
       <h>81</h>
     </coordinates>
@@ -138,8 +151,8 @@ attendees: IPerson[]
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>711</y>
+      <x>1152</x>
+      <y>774</y>
       <w>369</w>
       <h>153</h>
     </coordinates>
@@ -158,8 +171,8 @@ Iperson
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>828</x>
-      <y>450</y>
+      <x>1062</x>
+      <y>513</y>
       <w>270</w>
       <h>171</h>
     </coordinates>
@@ -171,8 +184,8 @@ Teacher(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>891</x>
-      <y>612</y>
+      <x>1125</x>
+      <y>675</y>
       <w>234</w>
       <h>81</h>
     </coordinates>
@@ -182,8 +195,8 @@ Teacher(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1116</x>
-      <y>450</y>
+      <x>1350</x>
+      <y>513</y>
       <w>288</w>
       <h>171</h>
     </coordinates>
@@ -195,8 +208,8 @@ Student(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1098</x>
-      <y>612</y>
+      <x>1332</x>
+      <y>675</y>
       <w>207</w>
       <h>117</h>
     </coordinates>
@@ -206,8 +219,8 @@ Student(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>288</x>
-      <y>702</y>
+      <x>522</x>
+      <y>765</y>
       <w>495</w>
       <h>90</h>
     </coordinates>
@@ -220,8 +233,8 @@ Student(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>270</x>
-      <y>666</y>
+      <x>504</x>
+      <y>729</y>
       <w>531</w>
       <h>216</h>
     </coordinates>
@@ -231,25 +244,71 @@ Student(name: string, PCN: int, email:string)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>171</x>
-      <y>324</y>
-      <w>135</w>
+      <x>81</x>
+      <y>387</y>
+      <w>441</w>
       <h>441</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1</panel_attributes>
-    <additional_attributes>130.0;460.0;10.0;460.0;10.0;10.0;50.0;10.0</additional_attributes>
+    <additional_attributes>470.0;460.0;10.0;460.0;10.0;10.0;40.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>324</x>
-      <y>414</y>
+      <x>558</x>
+      <y>495</y>
       <w>36</w>
-      <h>72</h>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 1</panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>99</x>
+      <y>207</y>
+      <w>315</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Form1</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>189</x>
+      <y>252</y>
+      <w>36</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+m1=1</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>207</y>
+      <w>279</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Form FR8</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>405</x>
+      <y>216</y>
+      <w>225</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+workshops: IWorkshop[]</panel_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
   </element>
 </diagram>

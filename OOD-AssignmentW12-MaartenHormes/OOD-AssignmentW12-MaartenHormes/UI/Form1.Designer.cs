@@ -236,6 +236,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.lbxAvailableWorkshops.Name = "lbxAvailableWorkshops";
             this.lbxAvailableWorkshops.Size = new System.Drawing.Size(446, 381);
             this.lbxAvailableWorkshops.TabIndex = 0;
+            this.lbxAvailableWorkshops.SelectedIndexChanged += new System.EventHandler(this.lbxAvailableWorkshops_SelectedIndexChanged);
             // 
             // tpPeople
             // 
@@ -255,6 +256,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnUpdateWorkshop.TabIndex = 17;
             this.btnUpdateWorkshop.Text = "Update selected workshop";
             this.btnUpdateWorkshop.UseVisualStyleBackColor = true;
+            this.btnUpdateWorkshop.Click += new System.EventHandler(this.btnUpdateWorkshop_Click);
             // 
             // Form1
             // 
