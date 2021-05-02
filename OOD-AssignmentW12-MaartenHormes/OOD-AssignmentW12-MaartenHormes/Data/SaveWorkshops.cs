@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OOD_AssignmentW12_MaartenHormes
 {
-    public partial class Form1 : Form
+    public class SaveWorkshops
     {
-        public Form1()
+        public Exception SaveWorkshopsToFile(List<IWorkshop> workshops)
         {
-            InitializeComponent();
+            return null;
         }
     }
 }

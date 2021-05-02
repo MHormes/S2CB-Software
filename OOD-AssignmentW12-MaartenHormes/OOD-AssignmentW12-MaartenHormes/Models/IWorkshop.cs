@@ -18,6 +18,11 @@ namespace OOD_AssignmentW12_MaartenHormes
             get; set;
         }
 
+        DateTime Date
+        {
+            get; set;
+        }
+
         int MaxCapacity
         {
             get; set;
@@ -26,6 +31,6 @@ namespace OOD_AssignmentW12_MaartenHormes
         bool Started
         {
             get; set;
-        }
+        } 
     }
 }
