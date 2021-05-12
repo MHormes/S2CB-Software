@@ -8,17 +8,23 @@ namespace OOD_AssignmentW12_MaartenHormes
 {
     public class Student : IPerson
     {
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int PCN { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public string Email { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Tuple<string, int>> SeatNumbers { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public List<Tuple<string, string>> Password { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public string Name { get; set; }
+        public int PCN { get; set; }
+        public string Email { get; set; }
+        public List<Tuple<string, int>> SeatNumbers { get; set; }
+        public List<Tuple<string, string>> Password { get; set; }
 
         public Student(string name, int pcn, string email)
         {
             this.Name = name;
             this.PCN = pcn;
             this.Email = email;
+        }
+
+        public override string ToString()
+        {
+            return $"Student. Name:{Name}, pcn{PCN}, email:{Email}";
+
         }
     }
 }

@@ -24,7 +24,7 @@ namespace OOD_AssignmentW12_MaartenHormes
                 ValidateUserInput(roomNmr, maxCapacity, date);
                 if (GetWorkshop(name) != null)
                 {
-                    //throw new exception?
+                    throw new NameTakenException(name);
                 }
 
                 if (inBuilding == true)
@@ -38,6 +38,10 @@ namespace OOD_AssignmentW12_MaartenHormes
                     workshops.Add(newWorkshop);
                 }
                 return null;
+            }
+            catch (IncorrectNumberInputException numberEx)
+            {
+                return numberEx;
             }
             catch(Exception ex)
             {
@@ -57,7 +61,7 @@ namespace OOD_AssignmentW12_MaartenHormes
                 {
                     if(GetWorkshop(newName) != null)
                     {
-                        //throw new exception?
+                        throw new NameTakenException(newName);
                     }
                 }
 
@@ -77,15 +81,24 @@ namespace OOD_AssignmentW12_MaartenHormes
                 }
                 return null;
             }
+            catch (IncorrectNumberInputException numberEX)
+            {
+                return numberEX;
+            }
             catch(Exception ex)
             {
                 return ex;
             }
         }
 
-        public bool DeleteWorkshop(string name)
+        public bool DeleteWorkshop(IWorkshop workshop)
         {
-            return true;
+            if (workshops.Contains(workshop))
+            {
+                workshops.Remove(workshop);
+                return true;
+            }
+            return false;
         }
 
         public IWorkshop GetWorkshop(string name)
@@ -126,22 +139,21 @@ namespace OOD_AssignmentW12_MaartenHormes
         }
 
         //Validate the user input and throw needed exceptions
-        public bool ValidateUserInput(string roomNmr, string maxCapacity, DateTime date)
+        private void ValidateUserInput(string roomNmr, string maxCapacity, DateTime date)
         {
             if (!Regex.IsMatch(maxCapacity, @"^[0-9]*$"))
             {
-                //throw exception
+                throw new IncorrectNumberInputException(maxCapacity);
             }
-            if (Regex.IsMatch(roomNmr, @"^[0-9]*\.?[0-9]*$"))
+            if (!Regex.IsMatch(roomNmr, @"^[0-9]*\.?[0-9]*$"))
             {
-                //throw new exception
+                throw new IncorrectNumberInputException(roomNmr);
             }
             
             if (date < DateTime.Now)
             {
-                //throw new exception?
+                throw new DateBeforeNowException(date);
             }
-            return true;
         }
     }
 }
