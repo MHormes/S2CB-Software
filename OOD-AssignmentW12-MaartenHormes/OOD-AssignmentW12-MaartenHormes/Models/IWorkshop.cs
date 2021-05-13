@@ -31,6 +31,16 @@ namespace OOD_AssignmentW12_MaartenHormes
         bool Started
         {
             get; set;
-        } 
+        }
+
+        List<Teacher> GetTeachers();
+        List<IPerson> GetStudents();
+
+        void RemoveTeacher(Teacher teacher);
+
+        void RemovePerson(IPerson person);
+
+        void AssignTeacher(Teacher teacher);
+        void EnrolStudent(IPerson person);
     }
 }

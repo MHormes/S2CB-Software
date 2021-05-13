@@ -11,6 +11,7 @@ namespace OOD_AssignmentW12_MaartenHormes
         List<Teacher> teachers;
         List<IPerson> attendees;
 
+        static int nextSeatnumber = 1; 
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Date { get; set; }
@@ -34,12 +35,51 @@ namespace OOD_AssignmentW12_MaartenHormes
 
         public void AssignSeat(int pcn)
         {
+            foreach(IPerson person in attendees)
+            {
+                if(person.PCN == pcn)
+                {
+                    person.SeatNumbers.Add(new Tuple<string, int>(Name, nextSeatnumber));
+                    nextSeatnumber++;
+                }
+            }
+        }
 
+        public List<Teacher> GetTeachers()
+        {
+            return this.teachers;
+        }
+
+        public List<IPerson> GetStudents()
+        {
+            return this.attendees;
+        }
+
+        public void RemoveTeacher(Teacher teacher)
+        {
+            teachers.Remove(teacher);
+        }
+
+        public void RemovePerson(IPerson person)
+        {
+            attendees.Remove(person);
+        }
+
+        public void AssignTeacher(Teacher teacher)
+        {
+            teachers.Add(teacher);
+        }
+
+        public void EnrolStudent(IPerson person)
+        {
+            attendees.Add(person);
         }
 
         public override string ToString()
         {
             return $"{this.Name}: {this.Description}. Adress + Room: {this.Adress} {this.RoomNmr}. Capacity: {this.attendees.Count()}/{this.MaxCapacity}. Will be held: {this.Date}";
         }
+
+        
     }
 }

@@ -9,11 +9,12 @@ namespace OOD_AssignmentW12_MaartenHormes
 {
     public class WorkshopManager
     {
-
+        SaveWorkshops saveWorkshops;
         List<IWorkshop> workshops;
         public WorkshopManager()
         {
             workshops = new List<IWorkshop>();
+            saveWorkshops = new SaveWorkshops();
         }
 
         public Exception CreateNewWorkshop(bool inBuilding, string name, string description, string maxCapacity, DateTime date, string url, string adress, string roomNmr)
@@ -43,7 +44,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             {
                 return numberEx;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex;
             }
@@ -55,11 +56,15 @@ namespace OOD_AssignmentW12_MaartenHormes
             {
                 IWorkshop workshop = GetWorkshop(oldName);
 
+                if(workshop.Started == true)
+                {
+                    throw new WorkshopStartedException();
+                }
                 //Check user input
                 ValidateUserInput(roomNmr, maxCapacity, date);
-                if(oldName != newName)
+                if (oldName != newName)
                 {
-                    if(GetWorkshop(newName) != null)
+                    if (GetWorkshop(newName) != null)
                     {
                         throw new NameTakenException(newName);
                     }
@@ -70,7 +75,7 @@ namespace OOD_AssignmentW12_MaartenHormes
                 workshop.MaxCapacity = Convert.ToInt32(maxCapacity);
                 workshop.Date = date;
 
-                if(workshop is WorkshopInBuilding)
+                if (workshop is WorkshopInBuilding)
                 {
                     ((WorkshopInBuilding)workshop).Adress = adress;
                     ((WorkshopInBuilding)workshop).RoomNmr = Convert.ToDouble(roomNmr);
@@ -81,11 +86,15 @@ namespace OOD_AssignmentW12_MaartenHormes
                 }
                 return null;
             }
+            catch (WorkshopStartedException startedEx)
+            {
+                return startedEx;
+            }
             catch (IncorrectNumberInputException numberEX)
             {
                 return numberEX;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex;
             }
@@ -103,9 +112,9 @@ namespace OOD_AssignmentW12_MaartenHormes
 
         public IWorkshop GetWorkshop(string name)
         {
-            foreach(IWorkshop workshop in workshops)
+            foreach (IWorkshop workshop in workshops)
             {
-                if(workshop.Name == name)
+                if (workshop.Name == name)
                 {
                     return workshop;
                 }
@@ -118,24 +127,84 @@ namespace OOD_AssignmentW12_MaartenHormes
             return this.workshops;
         }
 
-        public void StartWorkshop(string name)
-        {
-
-        }
-
         public Exception AssignTeacher(IWorkshop workshop, IPerson person)
         {
-            return null;
+            try
+            {
+                if(workshop.Started == true)
+                {
+                    throw new WorkshopStartedException();
+                }
+                if (person is Teacher)
+                {
+                    if (workshop.GetTeachers().Contains((Teacher)person))
+                    {
+                        throw new TeacherAlreadyAssignedExcpetion();
+                    }
+                    workshop.AssignTeacher((Teacher)person);
+                    return null;
+                }
+                throw new TeacherNotATeacherException();
+
+            }
+            catch (WorkshopStartedException startedEx)
+            {
+                return startedEx;
+            }
+            catch (TeacherAlreadyAssignedExcpetion teacherEx)
+            {
+                return teacherEx;
+            }
+            catch (TeacherNotATeacherException noTeacherEX)
+            {
+                return noTeacherEX;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
+        }
+
+        public bool RemoveTeacher(IWorkshop workshop, Teacher person)
+        {
+            if (workshop.GetTeachers().Contains(person) && !workshop.Started)
+            {
+                workshop.RemoveTeacher(person);
+                return true;
+            }
+            return false;
         }
 
         public bool EnrolPerson(IWorkshop workshop, IPerson attendee)
         {
-            return true;
+            if(workshop.MaxCapacity > workshop.GetStudents().Count && !workshop.Started)
+            {
+                workshop.EnrolStudent(attendee);
+                if(workshop is WorkshopInBuilding)
+                {
+                    ((WorkshopInBuilding)workshop).AssignSeat(attendee.PCN);
+                }
+                else
+                {
+                    ((WorkshopOnline)workshop).AssignPassword(attendee.PCN);
+                }
+                return true;
+            }
+            return false;
         }
 
+        public bool RemovePerson(IWorkshop workshop, IPerson attendee)
+        {
+            if (workshop.GetStudents().Contains(attendee) && !workshop.Started)
+            {
+                workshop.RemovePerson(attendee);
+                return true;
+            }
+            return false;
+        }
         public void SaveWorkshop()
         {
-
+            saveWorkshops.SaveWorkshopsToFile(workshops);
         }
 
         //Validate the user input and throw needed exceptions
@@ -149,7 +218,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             {
                 throw new IncorrectNumberInputException(roomNmr);
             }
-            
+
             if (date < DateTime.Now)
             {
                 throw new DateBeforeNowException(date);

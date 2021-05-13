@@ -94,10 +94,14 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnSaveToFile = new System.Windows.Forms.Button();
             this.btnLoadFromFile = new System.Windows.Forms.Button();
             this.btnSaveTextFile = new System.Windows.Forms.Button();
+            this.btnViewEnrolment = new System.Windows.Forms.Button();
+            this.tpPeopleDetails = new System.Windows.Forms.TabPage();
+            this.lbxEnrolmentDetails = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tpWorkshop.SuspendLayout();
             this.tpPeople.SuspendLayout();
             this.tpWorkshopDetails.SuspendLayout();
+            this.tpPeopleDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -105,6 +109,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.tabControl1.Controls.Add(this.tpWorkshop);
             this.tabControl1.Controls.Add(this.tpPeople);
             this.tabControl1.Controls.Add(this.tpWorkshopDetails);
+            this.tabControl1.Controls.Add(this.tpPeopleDetails);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -348,6 +353,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             // 
             // tpPeople
             // 
+            this.tpPeople.Controls.Add(this.btnViewEnrolment);
             this.tpPeople.Controls.Add(this.btnAssignToWorkshop);
             this.tpPeople.Controls.Add(this.btnRemovePerson);
             this.tpPeople.Controls.Add(this.btnUpdatePerson);
@@ -537,6 +543,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnRemoveSelectedStudent.TabIndex = 38;
             this.btnRemoveSelectedStudent.Text = "Remove selected student";
             this.btnRemoveSelectedStudent.UseVisualStyleBackColor = true;
+            this.btnRemoveSelectedStudent.Click += new System.EventHandler(this.btnRemoveSelectedStudent_Click);
             // 
             // btnRemoveSelectedTeacher
             // 
@@ -546,6 +553,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnRemoveSelectedTeacher.TabIndex = 37;
             this.btnRemoveSelectedTeacher.Text = "Remove selected teacher";
             this.btnRemoveSelectedTeacher.UseVisualStyleBackColor = true;
+            this.btnRemoveSelectedTeacher.Click += new System.EventHandler(this.btnRemoveSelectedTeacher_Click);
             // 
             // btnStartWorkshop
             // 
@@ -565,6 +573,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnEnrolAttendees.TabIndex = 35;
             this.btnEnrolAttendees.Text = "Enrol new attendees";
             this.btnEnrolAttendees.UseVisualStyleBackColor = true;
+            this.btnEnrolAttendees.Click += new System.EventHandler(this.btnEnrolAttendees_Click);
             // 
             // btnAssignTeacher
             // 
@@ -574,6 +583,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnAssignTeacher.TabIndex = 34;
             this.btnAssignTeacher.Text = "Assign new teacher";
             this.btnAssignTeacher.UseVisualStyleBackColor = true;
+            this.btnAssignTeacher.Click += new System.EventHandler(this.btnAssignTeacher_Click);
             // 
             // btnWorkshopDetailsBack
             // 
@@ -738,6 +748,35 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.btnSaveTextFile.TabIndex = 3;
             this.btnSaveTextFile.Text = "Save workshops to readable text file";
             this.btnSaveTextFile.UseVisualStyleBackColor = true;
+            this.btnSaveTextFile.Click += new System.EventHandler(this.btnSaveTextFile_Click);
+            // 
+            // btnViewEnrolment
+            // 
+            this.btnViewEnrolment.Location = new System.Drawing.Point(11, 310);
+            this.btnViewEnrolment.Name = "btnViewEnrolment";
+            this.btnViewEnrolment.Size = new System.Drawing.Size(356, 51);
+            this.btnViewEnrolment.TabIndex = 14;
+            this.btnViewEnrolment.Text = "View enrolment details for selected person";
+            this.btnViewEnrolment.UseVisualStyleBackColor = true;
+            this.btnViewEnrolment.Click += new System.EventHandler(this.btnViewEnrolment_Click);
+            // 
+            // tpPeopleDetails
+            // 
+            this.tpPeopleDetails.Controls.Add(this.lbxEnrolmentDetails);
+            this.tpPeopleDetails.Location = new System.Drawing.Point(4, 22);
+            this.tpPeopleDetails.Name = "tpPeopleDetails";
+            this.tpPeopleDetails.Size = new System.Drawing.Size(768, 400);
+            this.tpPeopleDetails.TabIndex = 3;
+            this.tpPeopleDetails.Text = "PeopleDetails";
+            this.tpPeopleDetails.UseVisualStyleBackColor = true;
+            // 
+            // lbxEnrolmentDetails
+            // 
+            this.lbxEnrolmentDetails.FormattingEnabled = true;
+            this.lbxEnrolmentDetails.Location = new System.Drawing.Point(4, 4);
+            this.lbxEnrolmentDetails.Name = "lbxEnrolmentDetails";
+            this.lbxEnrolmentDetails.Size = new System.Drawing.Size(761, 394);
+            this.lbxEnrolmentDetails.TabIndex = 0;
             // 
             // Form1
             // 
@@ -757,6 +796,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             this.tpPeople.PerformLayout();
             this.tpWorkshopDetails.ResumeLayout(false);
             this.tpWorkshopDetails.PerformLayout();
+            this.tpPeopleDetails.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -828,6 +868,9 @@ namespace OOD_AssignmentW12_MaartenHormes
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.ListBox lbxTeachers;
         private System.Windows.Forms.Button btnRemoveWorkshop;
+        private System.Windows.Forms.Button btnViewEnrolment;
+        private System.Windows.Forms.TabPage tpPeopleDetails;
+        private System.Windows.Forms.ListBox lbxEnrolmentDetails;
     }
 }
 

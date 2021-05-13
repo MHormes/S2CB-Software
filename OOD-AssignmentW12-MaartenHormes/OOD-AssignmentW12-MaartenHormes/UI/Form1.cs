@@ -125,13 +125,24 @@ namespace OOD_AssignmentW12_MaartenHormes
         //button click for setting a workshop as started
         private void btnStartWorkshop_Click(object sender, EventArgs e)
         {
-            workshopToEdit.Started = true;
-            tabControl1.SelectedTab = tpWorkshop;
-            btnCreateWorkshop.Enabled = true;
-            lbxExpiredWorkshops.Enabled = true;
-            UpdateWorkshopListbox();
+            if(workshopToEdit.GetTeachers().Count != 0)
+            {
+                workshopToEdit.Started = true;
+                tabControl1.SelectedTab = tpWorkshop;
+                btnCreateWorkshop.Enabled = true;
+                lbxExpiredWorkshops.Enabled = true;
+                UpdateWorkshopListbox();
+                return;
+            }
+            MessageBox.Show("Assign a teacher before starting the workshop");
         }
 
+
+        //button click for saving the workshops to a txt file
+        private void btnSaveTextFile_Click(object sender, EventArgs e)
+        {
+            WM.SaveWorkshop();
+        }
 
         //PERSONS
 
@@ -215,6 +226,80 @@ namespace OOD_AssignmentW12_MaartenHormes
         private void btnAssignToWorkshop_Click(object sender, EventArgs e)
         {
             UpdatePersonView();
+        }
+
+        //button for viewing enrolment details for students
+        private void btnViewEnrolment_Click(object sender, EventArgs e)
+        {
+            if(lbxStudents.SelectedIndex != -1)
+            {
+                tabControl1.SelectedTab = tpPeopleDetails;
+                IPerson student = (IPerson)lbxStudents.SelectedItem;
+
+                foreach(IWorkshop workshop in WM.GetWorkshops())
+                {
+                    foreach(IPerson person in workshop.GetStudents())
+                    {
+                        if(person.PCN == student.PCN && workshop is WorkshopOnline)
+                        {
+                            int i = student.Password.FindIndex(t => t.Item1 == workshop.Name);
+                            lbxEnrolmentDetails.Items.Add(workshop + $" Password: {student.Password[i].Item2}");
+                        }
+                        else
+                        {
+                            int i = student.SeatNumbers.FindIndex(t => t.Item1 == workshop.Name);
+                            lbxEnrolmentDetails.Items.Add(workshop + $" Seatnumber: {student.SeatNumbers[i].Item2}");
+                        }
+                    }
+                }
+                return;
+            }
+            MessageBox.Show("Please select a student before clicking the button");
+        }
+
+
+        //Enrolment
+
+        //Method for assigning a teacher to a workshop
+        private void btnAssignTeacher_Click(object sender, EventArgs e)
+        {
+            EnrolmentForm form1 = new EnrolmentForm(WM, PM, true, workshopToEdit);
+            form1.ShowDialog();
+        }
+
+        //Method for enrolling somebody in the workshop
+        private void btnEnrolAttendees_Click(object sender, EventArgs e)
+        {
+            EnrolmentForm form1 = new EnrolmentForm(WM, PM, false, workshopToEdit);
+            form1.ShowDialog();
+        }
+
+        //Metod for removing a teacher from a workshop
+        private void btnRemoveSelectedTeacher_Click(object sender, EventArgs e)
+        {
+            if(lbxTeachers.SelectedIndex != -1)
+            {
+                Teacher teacherToRemoveFromWorkshop = (Teacher)lbxTeachers.SelectedItem;
+                var delete = WM.RemoveTeacher(workshopToEdit, teacherToRemoveFromWorkshop);
+                if(delete != true)
+                {
+                    MessageBox.Show("Deleting teacher unsucessfull");
+                }
+            }
+        }
+
+        //method for removing a student from a workshop
+        private void btnRemoveSelectedStudent_Click(object sender, EventArgs e)
+        {
+            if (lbxStudents.SelectedIndex != -1)
+            {
+                IPerson sttudentToRemoveFromWorkshop = (IPerson)lbxTeachers.SelectedItem;
+                var delete = WM.RemovePerson(workshopToEdit, sttudentToRemoveFromWorkshop);
+                if (delete != true)
+                {
+                    MessageBox.Show("Deleting person unsucessfull");
+                }
+            }
         }
 
 
@@ -399,6 +484,7 @@ namespace OOD_AssignmentW12_MaartenHormes
             rbPersonTeacher.Enabled = true;
             btnAddPerson.Enabled = true;
         }
+
         
     }
 }

@@ -46,14 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\TeacherAlreadyAssignedExcpetion.cs" />
+    <Compile Include="UI\EnrolmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EnrolmentForm.Designer.cs">
+      <DependentUpon>EnrolmentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Exceptions\DateBeforeNowException.cs" />
     <Compile Include="Exceptions\IncorrectNumberInputException.cs" />
     <Compile Include="Exceptions\IncorrectEmailException.cs" />
-    <Compile Include="IncorrectPCNInputException.cs" />
+    <Compile Include="Exceptions\IncorrectPCNInputException.cs" />
     <Compile Include="Logic\PersonManager.cs" />
     <Compile Include="Data\SaveWorkshops.cs" />
     <Compile Include="Exceptions\NameTakenException.cs" />
     <Compile Include="Exceptions\PcnTakenException.cs" />
+    <Compile Include="Exceptions\TeacherNotATeacherException.cs" />
     <Compile Include="UI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +77,10 @@
     <Compile Include="Models\WorkshopInBuilding.cs" />
     <Compile Include="Models\WorkshopOnline.cs" />
     <Compile Include="Logic\WorkshopManager.cs" />
+    <Compile Include="WorkshopStartedException.cs" />
+    <EmbeddedResource Include="UI\EnrolmentForm.resx">
+      <DependentUpon>EnrolmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
